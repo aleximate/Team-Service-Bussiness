@@ -25,4 +25,12 @@ public class ConsumerController {
         Consumer consumer1= consumerRepository.save(consumer);
         return new ResponseEntity<>(consumer1,HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void>deleteConsumer(@PathVariable Integer id) {
+        consumerRepository.deleteById(id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }

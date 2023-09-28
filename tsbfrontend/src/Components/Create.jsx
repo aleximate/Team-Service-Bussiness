@@ -31,12 +31,9 @@ export const Create = () => {
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
-    // Llama al método getAllTypes para obtener las opciones desde tu API
     getAllTypes()
       .then((response) => {
-        // Extrae los datos de la respuesta de la API
         const data = response.data;
-        // Actualiza el estado con las opciones obtenidas de la API
         setOptions(data);
       })
       .catch((error) => {

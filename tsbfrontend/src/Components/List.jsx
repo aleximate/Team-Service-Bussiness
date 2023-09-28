@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { getAllProducts } from "../Api/Products";
-import { getAllConsumers } from "../Api/Consumers";
-import { Link, useParams } from "react-router-dom";
-import { getAllTypes } from "../Api/TypeProducts";
+import { deleteProduct, getAllProducts } from "../Api/Products";
+import { deleteConsumer, getAllConsumers } from "../Api/Consumers";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { deleteType, getAllTypes } from "../Api/TypeProducts";
 
 export const List = () => {
   const { tipo } = useParams();
   const [data, setData] = useState([]);
+  const history = useNavigate();
+  const [selectedItemId, setSelectedItemId] = useState(null);
 
   const fetchDataByType = {
     producto: getAllProducts,
@@ -14,16 +16,51 @@ export const List = () => {
     tipos: getAllTypes,
   };
 
+  const fetchDeleteByType = {
+    producto: deleteProduct,
+    persona: deleteConsumer,
+    tipos: deleteType,
+  };
+
   const columnHeaders = {
-    producto: ["ID", "Name", "Price", "On sale", "Type Product"],
-    persona: ["ID", "Name", "Lastname", "Email", "Birthdate", "DNI"],
-    tipos: ["ID", "Name"],
+    producto: ["ID", "Name", "Price", "On sale", "Type Product", "Acciones"],
+    persona: [
+      "ID",
+      "Name",
+      "Lastname",
+      "Email",
+      "Birthdate",
+      "DNI",
+      "Acciones",
+    ],
+    tipos: ["ID", "Name", "Acciones"],
+  };
+  const handleEdit = (itemId) => {
+    setSelectedItemId(itemId);
+    history.push(`/update/${tipo}`);
   };
 
   const customFields = {
-    producto: ["id", "name", "price", "onSale", "typeProduct"],
-    persona: ["id", "name", "lastName", "email", "birthDate", "dni"],
-    tipos: ["id", "name"],
+    producto: ["id", "name", "price", "onSale", "typeProduct", "actions"], // Asegúrate de que "actions" esté aquí
+    persona: ["id", "name", "lastName", "email", "birthDate", "dni", "actions"], // Asegúrate de que "actions" esté aquí
+    tipos: ["id", "name", "actions"], // Asegúrate de que "actions" esté aquí
+  };
+  const handleDelete = async (itemId) => {
+    try {
+      const deleteFunction = fetchDeleteByType[tipo];
+      if (deleteFunction) {
+        await deleteFunction(itemId);
+        // Actualiza la lista después de eliminar el elemento
+        setData((prevData) => prevData.filter((item) => item.id !== itemId));
+      } else {
+        console.error(
+          "No se encontró una función de eliminación para el tipo:",
+          tipo
+        );
+      }
+    } catch (error) {
+      console.error("Error al eliminar el elemento:", error);
+    }
   };
   useEffect(() => {
     async function fetchData() {
@@ -68,20 +105,30 @@ export const List = () => {
             <tr key={item.id}>
               {customFields[tipo].map((field) => (
                 <td key={field}>
-                  {field === "onSale"
-                    ? item[field]
-                      ? "En oferta"
-                      : "No está en oferta"
-                    : field === "typeProduct"
-                    ? item.typeProduct.name // Aquí se muestra el nombre de typeProduct
-                    : item[field]}
+                  {field === "onSale" ? (
+                    item[field] ? (
+                      "En oferta"
+                    ) : (
+                      "No está en oferta"
+                    )
+                  ) : field === "typeProduct" ? (
+                    item.typeProduct.name
+                  ) : field === "actions" ? (
+                    <>
+                      <button onClick={() => handleEdit(item.id)}>Editar</button>
+                      <button onClick={() => handleDelete(item.id)}>
+                        Eliminar
+                      </button>
+                    </>
+                  ) : (
+                    item[field]
+                  )}
                 </td>
               ))}
             </tr>
           ))}
         </tbody>
       </table>
-      
     </div>
   );
 };

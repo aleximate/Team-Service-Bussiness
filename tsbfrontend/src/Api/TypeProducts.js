@@ -7,3 +7,7 @@ export const getAllTypes=()=>{
 export const createTypes=(type)=>{
     return axios.post('http://localhost:8080/type',type)
 }
+
+export const deleteType=(id)=>{
+    return axios.delete('http://localhost:8080/type/'+id)
+}

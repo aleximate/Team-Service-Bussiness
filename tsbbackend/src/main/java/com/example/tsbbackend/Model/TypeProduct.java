@@ -19,7 +19,7 @@ public class TypeProduct {
     private Integer id;
     private String name;
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typeProduct")
+    @OneToMany(mappedBy = "typeProduct")
     private List<Product> products = new ArrayList<>();
 
 }
