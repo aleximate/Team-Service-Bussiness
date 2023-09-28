@@ -3,7 +3,6 @@ import { getAllProducts } from "../Api/Products";
 import { getAllConsumers } from "../Api/Consumers";
 import { Link, useParams } from "react-router-dom";
 import { getAllTypes } from "../Api/TypeProducts";
-import { Create } from "./Create";
 
 export const List = () => {
   const { tipo } = useParams();

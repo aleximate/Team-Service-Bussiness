@@ -16,6 +16,12 @@ export const Create = () => {
     tipos: createTypes,
   };
 
+  const columnHeaders = {
+    producto: ["Name", "Price"],
+    persona: ["Name", "Lastname", "Email", "Birthdate", "DNI"],
+    tipos: ["Name"],
+  };
+
   const allFields = {
     producto: ["name", "price", "onSale", "typeProduct"],
     persona: ["name", "lastName", "email", "birthDate", "dni"],
@@ -45,13 +51,13 @@ export const Create = () => {
 
   const onSaleValue = formData.onSale === "true";
 
-const handleTypeProductChange = (event) => {
-  const selectedValue = event.target.value;
-  setSelectedOption(selectedValue); // Actualiza la opción seleccionada en el estado
+  const handleTypeProductChange = (event) => {
+    const selectedValue = event.target.value;
+    setSelectedOption(selectedValue); // Actualiza la opción seleccionada en el estado
 
-  // Agrega el ID del typeProduct al objeto formData
-  setFormData({ ...formData, typeProduct: selectedValue });
-};
+    // Agrega el ID del typeProduct al objeto formData
+    setFormData({ ...formData, typeProduct: selectedValue });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -67,16 +73,6 @@ const handleTypeProductChange = (event) => {
       const response = await fetchDataFunction(dataToSend);
       console.log(response);
       history(`/lista/${tipo}`);
-
-      /*if (response.ok) {
-        // Redirige a la página de lista después de crear el elemento
-        history(`/lista/${tipo}`);
-      } else {
-        // Maneja errores si la solicitud no fue exitosa
-        console.error("Error al crear el elemento:", response.statusText);
-        // También puedes mostrar detalles adicionales del error si están disponibles en la respuesta.
-        console.error("Detalles del error:", response.data); // Esto dependerá de la estructura de tu API
-      }*/
     } catch (error) {
       console.error("Error al crear el elemento:", error.message);
     }
@@ -93,7 +89,7 @@ const handleTypeProductChange = (event) => {
           : "Tipo"}
       </h1>
       <form onSubmit={handleSubmit}>
-        {allFields[tipo].map((field) => (
+        {allFields[tipo].map((field, index) => (
           <div key={field}>
             {field === "typeProduct" && tipo === "producto" ? (
               // Campo de selección múltiple para "typeProduct" solo si el tipo es "producto"
@@ -133,11 +129,11 @@ const handleTypeProductChange = (event) => {
             ) : (
               // Otros campos de texto
               <div>
-                <label>{field}: </label>
+                <label>{columnHeaders[tipo][index]}: </label>
                 <input
                   type="text"
-                  name={field}
-                  value={formData[field] || ""}
+                  name={allFields[tipo][index]}
+                  value={formData[allFields[tipo][index]] || ""}
                   onChange={handleFieldChange}
                   required
                 />
