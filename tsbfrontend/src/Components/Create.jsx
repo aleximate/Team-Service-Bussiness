@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { createProducts } from "../Api/Products";
 import { createConsumers } from "../Api/Consumers";
 import { createTypes, getAllTypes } from "../Api/TypeProducts";
+import "./Create.css";
+
 
 export const Create = () => {
   const { tipo } = useParams();
@@ -93,7 +95,7 @@ export const Create = () => {
           <div key={field}>
             {field === "typeProduct" && tipo === "producto" ? (
               // Campo de selección múltiple para "typeProduct" solo si el tipo es "producto"
-              <div>
+              <div >
                 <label>Tipo de producto:</label>
                 <select
                   name="typeProduct" // Nombre del campo

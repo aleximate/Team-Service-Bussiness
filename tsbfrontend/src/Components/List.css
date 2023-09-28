@@ -1,0 +1,78 @@
+/* List.css */
+
+.container {
+  text-align: center;
+}
+
+.back-link,
+.create-link {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #349FDF;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.back-link:hover,
+.create-link:hover {
+  background-color: #1EA1F8;
+}
+
+h1 {
+  background-color: #E6F0F9;
+  color: #0108A7;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #349FDF;
+}
+
+table th {
+  background-color: #1EA1F8;
+  color: #fff;
+}
+
+table tr:nth-child(even) {
+  background-color: #E6F0F9;
+}
+
+table tr:nth-child(odd) {
+  background-color: #fff;
+}
+.custom-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #349FDF; /* Color de fondo original */
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  border: 1px solid #349FDF; /* Borde para resaltar el botón */
+  cursor: pointer;
+}
+.contenedor-boton{
+  display: flex;
+  justify-content: space-between;
+}
+.custom-button:hover {
+  background-color: #1EA1F8; /* Color de fondo al pasar el cursor */
+  border: 1px solid #1EA1F8; /* Cambio del color del borde al pasar el cursor */
+}
+

@@ -3,6 +3,7 @@ import { getAllProducts } from "../Api/Products";
 import { getAllConsumers } from "../Api/Consumers";
 import { Link, useParams } from "react-router-dom";
 import { getAllTypes } from "../Api/TypeProducts";
+import "./List.css";
 
 export const List = () => {
   const { tipo } = useParams();
@@ -45,8 +46,7 @@ export const List = () => {
 
   return (
     <div>
-      <Link to={`/menu`}>REGRESAR</Link>
-      <Link to={`/create/${tipo}`}>Crear Nuevo</Link>
+
       <h1>
         Lista de{" "}
         {tipo === "producto"
@@ -55,6 +55,10 @@ export const List = () => {
           ? "Personas"
           : "Tipos"}
       </h1>
+      <div class="contenedor-boton">
+      <Link to={`/menu`} className="custom-button">REGRESAR</Link>
+    <Link to={`/create/${tipo}`} className="custom-button">Crear Nuevo</Link>
+    </div>
       <table>
         <thead>
           <tr>
@@ -63,6 +67,7 @@ export const List = () => {
             ))}
           </tr>
         </thead>
+        
         <tbody>
           {data.map((item) => (
             <tr key={item.id}>
@@ -73,7 +78,7 @@ export const List = () => {
                       ? "En oferta"
                       : "No está en oferta"
                     : field === "typeProduct"
-                    ? item.typeProduct.name // Aquí se muestra el nombre de typeProduct
+                    ? item.typeProduct.name 
                     : item[field]}
                 </td>
               ))}
