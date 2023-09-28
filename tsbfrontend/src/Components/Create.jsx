@@ -8,7 +8,7 @@ export const Create = () => {
   const { tipo } = useParams();
   const history = useNavigate();
   const [options, setOptions] = useState([]);
-  //const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
 
   const fetchDataByType = {
     producto: createProducts,
@@ -36,12 +36,7 @@ export const Create = () => {
       .catch((error) => {
         console.error("Error al obtener opciones desde la API:", error);
       });
-  }, []); // El segundo argumento vacío significa que este efecto se ejecutará solo una vez
-
-  /* const handleSelectChange = (event) => {
-    const selectedValue = event.target.value;
-    setSelectedOption(selectedValue); // Actualiza la opción seleccionada
-  };*/
+  }, []);
 
   const handleFieldChange = (e) => {
     const { name, value } = e.target;
@@ -50,10 +45,13 @@ export const Create = () => {
 
   const onSaleValue = formData.onSale === "true";
 
-  const handleTypeProductChange = () => {
-    // Utiliza selectedOption para  actualizar typeProduct
-    setFormData({ ...formData, typeProduct: selectedOption });
-  };
+const handleTypeProductChange = (event) => {
+  const selectedValue = event.target.value;
+  setSelectedOption(selectedValue); // Actualiza la opción seleccionada en el estado
+
+  // Agrega el ID del typeProduct al objeto formData
+  setFormData({ ...formData, typeProduct: selectedValue });
+};
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -104,7 +102,7 @@ export const Create = () => {
                 <select
                   name="typeProduct" // Nombre del campo
                   onChange={handleTypeProductChange} // Usamos handleTypeProductChange aquí
-                  value={formData.typeProduct || []}
+                  value={selectedOption}
                 >
                   <option value="" disabled>
                     Selecciona el tipo de producto
