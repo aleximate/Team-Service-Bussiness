@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SaveProductDto {
     private String name;
-    private Integer price;
+    private Float price;
     private boolean onSale;
     private Integer typeProduct;
 

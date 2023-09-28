@@ -8,7 +8,7 @@ import lombok.*;
 public class ProductDto {
     private Integer id;
     private String name;
-    private Integer price;
+    private Float price;
     private boolean onSale;
     private TypeProductDto typeProduct;
 }

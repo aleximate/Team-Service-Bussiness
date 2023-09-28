@@ -4,8 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+/*@Data
+@Entity
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor*/
 public class Worker {
 }

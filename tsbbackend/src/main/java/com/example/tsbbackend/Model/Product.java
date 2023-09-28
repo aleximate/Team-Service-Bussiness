@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,14 @@ import java.util.List;
 @Data
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private Integer price;
+    //private String image;
+    private Float price;
     private Boolean onSale;
     @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)

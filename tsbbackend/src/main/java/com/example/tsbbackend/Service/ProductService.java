@@ -3,6 +3,7 @@ package com.example.tsbbackend.Service;
 import com.example.tsbbackend.Dto.ProductDto;
 import com.example.tsbbackend.Dto.SaveProductDto;
 import com.example.tsbbackend.Model.Product;
+import com.example.tsbbackend.Model.TypeProduct;
 import com.example.tsbbackend.Repository.ProductRepository;
 import com.example.tsbbackend.Repository.TypeProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +27,22 @@ public class ProductService {
     public List<SaveProductDto> getOnSaleProduct(){
         return productRepository.productOnSale();
     }
-    public Product createProduct(Product product){
-        product.setName(product.getName());
-        product.setPrice(product.getPrice());
-        product.setOnSale(product.getOnSale());
-        product.setTypeProduct(product.getTypeProduct());
+    public Product createProduct(SaveProductDto product){
 
-        productRepository.save(product);
-        return product;
+        TypeProduct typeProduct = typeProductRepository.findById(product.getTypeProduct())
+                .orElseThrow(() -> new RuntimeException("Tipo de producto no encontrado"));
 
+        // Crear un nuevo producto
+        Product product1 = new Product();
+        product1.setName(product.getName());
+        product1.setPrice(product.getPrice());
+        product1.setOnSale(product.isOnSale());
+        product1.setTypeProduct(typeProduct);
+
+        // Guardar el producto en la base de datos
+        Product savedProduct = productRepository.save(product1);
+
+        return savedProduct;
     }
 
     public boolean updateProduct(Integer id, SaveProductDto saveProductDto) {

@@ -38,20 +38,13 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<Product> save(@RequestBody SaveProductDto product)  {
 
-        TypeProduct typeProduct = typeProductRepository.findById(product.getTypeProduct())
-                .orElseThrow(() -> new RuntimeException("Tipo de producto no encontrado"));
-
-        // Crear un nuevo producto
-        Product product1 = new Product();
-        product1.setName(product.getName());
-        product1.setPrice(product.getPrice());
-        product1.setOnSale(product.isOnSale());
-        product1.setTypeProduct(typeProduct);
-
-        // Guardar el producto en la base de datos
-        Product savedProduct = productRepository.save(product1);
-
-        return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
+        try {
+            Product createdProduct = productService.createProduct(product);
+            return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            // Manejo de excepción para datos de entrada no válidos
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
     @PutMapping("/{id}")
     public ResponseEntity<String> updateProduct(@PathVariable Integer id, @RequestBody SaveProductDto saveProductDto) {
