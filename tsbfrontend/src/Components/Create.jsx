@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { createProducts } from "../Api/Products";
 import { createConsumers } from "../Api/Consumers";
 import { createTypes, getAllTypes } from "../Api/TypeProducts";
+import "./Create.css";
+
 
 export const Create = () => {
   const { tipo } = useParams();
@@ -17,9 +19,9 @@ export const Create = () => {
   };
 
   const columnHeaders = {
-    producto: ["Name", "Price"],
-    persona: ["Name", "Lastname", "Email", "Birthdate", "DNI"],
-    tipos: ["Name"],
+    producto: ["Nombre", "Precio"],
+    persona: ["Nombre", "Apellido", "Email", "Fecha de Nacimiento", "DNI"],
+    tipos: ["Nombre"],
   };
 
   const allFields = {
@@ -77,6 +79,7 @@ export const Create = () => {
 
   return (
     <div>
+      <Link to="/menu" className="custom-button">REGRESAR</Link>
       <h1>
         Crear Nuevo{" "}
         {tipo === "producto"
@@ -90,7 +93,7 @@ export const Create = () => {
           <div key={field}>
             {field === "typeProduct" && tipo === "producto" ? (
               // Campo de selección múltiple para "typeProduct" solo si el tipo es "producto"
-              <div>
+              <div >
                 <label>Tipo de producto:</label>
                 <select
                   name="typeProduct" // Nombre del campo
@@ -110,7 +113,7 @@ export const Create = () => {
             ) : field === "onSale" ? (
               // Campo de selección para "onSale" (En oferta / En stock)
               <div>
-                <label>{field}: </label>
+                <label>Estado: </label>
                 <select
                   name={field}
                   value={formData[field]} // Valor predeterminado "En stock" (false)

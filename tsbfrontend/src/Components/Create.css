@@ -1,0 +1,84 @@
+/* Estilo para el contenedor principal */
+div {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #E6F0F9; /* Color de fondo */
+    margin-bottom: 3vw;
+    border-radius: 5px;
+  }
+  
+  /* Estilo para el título */
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0108A7; /* Color del texto del título */
+  }
+  
+  /* Estilo para los divs internos */
+  div > div {
+    margin-bottom: 10px; /* Reducción del margen inferior */
+  }
+  
+  /* Estilo para los labels */
+  label {
+    width: 30%;
+    text-align: right;
+    font-weight: bold;
+    margin-right: 10px;
+    display: inline-block;
+  }
+  
+  /* Estilo para los campos de entrada y select */
+  input[type="text"] {
+    width: 40%;
+    padding: 13px;
+    margin-bottom: 5px; /* Reducción del margen inferior */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  select {
+    width: 45%;
+    padding: 10px;
+    margin-bottom: 5px; /* Reducción del margen inferior */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Estilo para el botón de enviar */
+  button[type="submit"] {
+    width: 20%;
+    margin: 0 25vw; /* Centra el botón */
+    padding: 10px;
+    background-color: #2029E6; /* Color de fondo del botón */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Estilo para el botón de enviar al pasar el cursor */
+  button[type="submit"]:hover {
+    background-color: #1EA1F8; /* Color de fondo al pasar el cursor */
+  }
+  
+  .custom-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #349FDF; /* Color de fondo original */
+    border-radius: 10px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    border: 1px solid #349FDF; /* Borde para resaltar el botón */
+    cursor: pointer;
+  }
+  .contenedor-boton{
+    display: flex;
+    justify-content: space-between;
+  }
+  .custom-button:hover {
+    background-color: #1EA1F8; /* Color de fondo al pasar el cursor */
+    border: 1px solid #1EA1F8; /* Cambio del color del borde al pasar el cursor */
+  }
+  

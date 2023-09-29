@@ -3,6 +3,7 @@ import { deleteProduct, getAllProducts } from "../Api/Products";
 import { deleteConsumer, getAllConsumers } from "../Api/Consumers";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteType, getAllTypes } from "../Api/TypeProducts";
+import "./List.css";
 
 export const List = () => {
   const { tipo } = useParams();
@@ -23,17 +24,17 @@ export const List = () => {
   };
 
   const columnHeaders = {
-    producto: ["ID", "Name", "Price", "On sale", "Type Product", "Acciones"],
+    producto: ["ID", "Nombre", "Precio", "Estado", "Tipo de Producto", "Acciones"],
     persona: [
       "ID",
-      "Name",
-      "Lastname",
+      "Nombre",
+      "Apellido",
       "Email",
-      "Birthdate",
+      "Fecha de nacimiento",
       "DNI",
       "Acciones",
     ],
-    tipos: ["ID", "Name", "Acciones"],
+    tipos: ["ID", "Nombre", "Acciones"],
   };
   const handleEdit = (itemId) => {
     setSelectedItemId(itemId);
@@ -82,8 +83,6 @@ export const List = () => {
 
   return (
     <div>
-      <Link to={`/menu`}>REGRESAR</Link>
-      <Link to={`/create/${tipo}`}>Crear Nuevo</Link>
       <h1>
         Lista de{" "}
         {tipo === "producto"
@@ -92,6 +91,14 @@ export const List = () => {
           ? "Personas"
           : "Tipos"}
       </h1>
+      <div className="contenedor-boton">
+        <Link to={`/menu`} className="custom-button">
+          REGRESAR
+        </Link>
+        <Link to={`/create/${tipo}`} className="custom-button">
+          Crear Nuevo
+        </Link>
+      </div>
       <table>
         <thead>
           <tr>
@@ -115,8 +122,10 @@ export const List = () => {
                     item.typeProduct.name
                   ) : field === "actions" ? (
                     <>
-                      <button onClick={() => handleEdit(item.id)}>Editar</button>
-                      <button onClick={() => handleDelete(item.id)}>
+                      <button onClick={() => handleEdit(item.id)} className="btn-update">
+                        Editar
+                      </button>
+                      <button onClick={() => handleDelete(item.id)} className="btn-delete">
                         Eliminar
                       </button>
                     </>
