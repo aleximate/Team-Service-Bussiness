@@ -19,8 +19,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    //private String image;
     private Float price;
+    @Lob
+    private byte[] image;
     private Boolean onSale;
     @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)

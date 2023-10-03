@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/type")
@@ -21,11 +22,45 @@ public class TypeProductController {
         List<TypeProduct> typeProducts= typeProductRepository.findAll();
         return ResponseEntity.ok(typeProducts);
     }
-    @PostMapping
-    public ResponseEntity<TypeProduct>save(@RequestBody TypeProduct product){
-        TypeProduct product1= typeProductRepository.save(product);
-        return ResponseEntity.ok(product1);
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<TypeProduct>>findTypeById(@PathVariable("id") Integer id){
+        Optional<TypeProduct>typeProduct=typeProductRepository.findById(id);
+        return ResponseEntity.ok(typeProduct);
     }
+    @PostMapping
+    public ResponseEntity<TypeProduct>save(@RequestParam ("name") String name){
+        try {
+            TypeProduct typeProduct=new TypeProduct();
+            typeProduct.setName(name);
+            TypeProduct product=typeProductRepository.save(typeProduct);
+            return new ResponseEntity<>(typeProduct,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<TypeProduct> update(@PathVariable Integer id, @RequestParam("name") String name) {
+        try {
+            Optional<TypeProduct> existingTypeProductOptional = typeProductRepository.findById(id);
+
+            if (existingTypeProductOptional.isPresent()) {
+                TypeProduct existingTypeProduct = existingTypeProductOptional.get();
+                existingTypeProduct.setName(name);
+
+                TypeProduct updatedTypeProduct = typeProductRepository.save(existingTypeProduct);
+
+                return new ResponseEntity<>(updatedTypeProduct, HttpStatus.OK);
+            } else {
+                // Si no se encuentra la entidad con el ID proporcionado, puedes devolver un ResponseEntity con el código 404 (Not Found).
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            // Si ocurre un error durante la actualización, puedes devolver un ResponseEntity con el código 500 (Internal Server Error).
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void>deleteType(@PathVariable Integer id){

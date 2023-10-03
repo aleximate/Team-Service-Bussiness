@@ -8,7 +8,10 @@ import com.example.tsbbackend.Repository.ProductRepository;
 import com.example.tsbbackend.Repository.TypeProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,45 +30,64 @@ public class ProductService {
     public List<SaveProductDto> getOnSaleProduct(){
         return productRepository.productOnSale();
     }
-    public Product createProduct(SaveProductDto product){
 
-        TypeProduct typeProduct = typeProductRepository.findById(product.getTypeProduct())
-                .orElseThrow(() -> new RuntimeException("Tipo de producto no encontrado"));
+    public List<ProductDto>getProductById(Integer id){
+        return productRepository.findProductById(id);
+    }
+    public Product createProduct(SaveProductDto productDto,  MultipartFile image) throws IOException {
 
-        // Crear un nuevo producto
-        Product product1 = new Product();
-        product1.setName(product.getName());
-        product1.setPrice(product.getPrice());
-        product1.setOnSale(product.isOnSale());
-        product1.setTypeProduct(typeProduct);
+        byte[] imageData = image.getBytes();
 
-        // Guardar el producto en la base de datos
-        Product savedProduct = productRepository.save(product1);
+            // Crear una instancia de Product y configurar sus propiedades
+            TypeProduct typeProduct = typeProductRepository.findById(productDto.getTypeProduct())
+                    .orElseThrow(() -> new RuntimeException("Tipo de producto no encontrado"));
 
-        return savedProduct;
+            Product product = new Product();
+            product.setName(productDto.getName());
+            product.setPrice(productDto.getPrice());
+            product.setImage(imageData);
+            product.setOnSale(productDto.isOnSale());
+            product.setTypeProduct(typeProduct);
+
+            // Guardar el producto en la base de datos
+            Product savedProduct = productRepository.save(product);
+
+            return savedProduct;
     }
 
-    public boolean updateProduct(Integer id, SaveProductDto saveProductDto) {
-        Optional<Product> productOptional = productRepository.findById(id);
 
-        if (productOptional.isPresent()) {
-            Product existingProduct = productOptional.get();
+    public Product updateProduct(Integer productId, SaveProductDto productDto, MultipartFile image) throws IOException {
+        try {
+            // Verificar si el producto existe
+            Optional<Product> existingProductOptional = productRepository.findById(productId);
 
-            // Actualiza los campos del producto con los valores de updatedProductDto
-            existingProduct.setName(saveProductDto.getName());
-            existingProduct.setPrice(saveProductDto.getPrice());
-            existingProduct.setOnSale(saveProductDto.isOnSale());
-            existingProduct.setTypeProduct(typeProductRepository.findById
-                    (saveProductDto.getTypeProduct()).orElseThrow(()->new RuntimeException("Tipo de producto no encontrado")));
+            if (existingProductOptional.isPresent()) {
+                Product existingProduct = existingProductOptional.get();
 
-            // Guarda el producto actualizado
-            productRepository.save(existingProduct);
+                // Actualizar las propiedades del producto con los nuevos valores proporcionados
+                byte[] imageData = image.getBytes();
 
-            return true; // Producto actualizado con éxito
-        } else {
-            return false; // Producto no encontrado
+                TypeProduct typeProduct = typeProductRepository.findById(productDto.getTypeProduct())
+                        .orElseThrow(() -> new RuntimeException("Tipo de producto no encontrado"));
+
+                existingProduct.setName(productDto.getName());
+                existingProduct.setPrice(productDto.getPrice());
+                existingProduct.setImage(imageData);
+                existingProduct.setOnSale(productDto.isOnSale());
+                existingProduct.setTypeProduct(typeProduct);
+
+                // Guardar el producto actualizado en la base de datos
+                Product updatedProduct = productRepository.save(existingProduct);
+
+                return updatedProduct;
+            } else {
+                throw new RuntimeException("Producto no encontrado");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error al actualizar el producto", e);
         }
     }
+
 
     public boolean deleteProductById(Integer id) {
         Optional<Product> productOptional = productRepository.findById(id);
@@ -77,4 +99,5 @@ public class ProductService {
             return false; // Producto no encontrado
         }
     }
+
 }

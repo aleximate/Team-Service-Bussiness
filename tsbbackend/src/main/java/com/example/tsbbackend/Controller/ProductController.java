@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -29,6 +31,11 @@ public class ProductController {
         List<ProductDto> products = productService.getProduct();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<List<ProductDto>>findProductById(@PathVariable("id") Integer id) {
+        List<ProductDto> products=productService.getProductById(id);
+        return ResponseEntity.ok(products);
+    }
     @GetMapping(path = "/onsale")
     public ResponseEntity<List<SaveProductDto>>getOnSale(){
         List<SaveProductDto>saveProductDtos=productService.getOnSaleProduct();
@@ -36,10 +43,10 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> save(@RequestBody SaveProductDto product)  {
+    public ResponseEntity<Product>save(@ModelAttribute SaveProductDto product,@RequestParam("image") MultipartFile image) throws IOException {
 
         try {
-            Product createdProduct = productService.createProduct(product);
+            Product createdProduct = productService.createProduct(product,image);
             return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             // Manejo de excepción para datos de entrada no válidos
@@ -47,15 +54,22 @@ public class ProductController {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateProduct(@PathVariable Integer id, @RequestBody SaveProductDto saveProductDto) {
-        boolean updated = productService.updateProduct(id, saveProductDto);
-
-        if (updated) {
-            return new ResponseEntity<>("Producto actualizado correctamente", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("No se encontró el producto con ID: " + id, HttpStatus.NOT_FOUND);
+    public ResponseEntity<Product> updateProduct(
+            @PathVariable Integer id,
+            @ModelAttribute SaveProductDto product,
+            @RequestParam("image") MultipartFile image) {
+        try {
+            Product updatedProduct = productService.updateProduct(id, product, image);
+            return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            // Manejo de excepción para datos de entrada no válidos
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            // Manejo de excepción para otros errores
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable Integer id) {

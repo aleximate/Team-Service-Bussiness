@@ -5,6 +5,7 @@ import com.example.tsbbackend.Dto.SaveProductDto;
 import com.example.tsbbackend.Model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,10 +13,11 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product,Integer> {
 
     @Query(value = """
-            SELECT new com.example.tsbbackend.Dto.ProductDto(
+            SELECT NEW com.example.tsbbackend.Dto.ProductDto(
             p.id,
             p.name,
             p.price,
+            p.image,
             p.onSale,
             NEW com.example.tsbbackend.Dto.TypeProductDto
             (
@@ -41,4 +43,26 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
             """
     )
     public List<SaveProductDto>productOnSale();
+
+
+
+    @Query(value = """
+        SELECT new com.example.tsbbackend.Dto.ProductDto(
+        p.id,
+        p.name,
+        p.price,
+        p.image,
+        p.onSale,
+        NEW com.example.tsbbackend.Dto.TypeProductDto
+        (
+        tp.id,
+        tp.name)
+        )
+        FROM Product p
+        INNER JOIN p.typeProduct tp
+        WHERE p.id = :productId
+        """
+    )
+    public List<ProductDto> findProductById(@Param("productId") Integer productId);
+
 }
