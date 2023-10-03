@@ -13,7 +13,7 @@ function App() {
         <Route path="/menu" element={<Menu/>}/>
         <Route path="/create/:tipo" element={<Create/>}/>,
         <Route path="/lista/:tipo" element={<List/>}/>
-        <Route path="/actualizar/:tipo" element={<Update/>}/>
+        <Route path="/actualizar/:tipo/:itemId" element={<Update/>}/>
       </Routes>
     </BrowserRouter>
   );

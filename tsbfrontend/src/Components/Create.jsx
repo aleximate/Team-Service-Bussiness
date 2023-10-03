@@ -5,11 +5,11 @@ import { createConsumers } from "../Api/Consumers";
 import { createTypes, getAllTypes } from "../Api/TypeProducts";
 import "./Create.css";
 
-
 export const Create = () => {
   const { tipo } = useParams();
   const history = useNavigate();
   const [options, setOptions] = useState([]);
+  const [imageUrl, setImageUrl] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
 
   const fetchDataByType = {
@@ -25,12 +25,12 @@ export const Create = () => {
   };
 
   const allFields = {
-    producto: ["name", "price", "onSale", "typeProduct"],
+    producto: ["name", "price", "onSale", "typeProduct", "image"],
     persona: ["name", "lastName", "email", "birthDate", "dni"],
     tipos: ["name"],
   };
 
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({onSale:""});
 
   useEffect(() => {
     getAllTypes()
@@ -43,20 +43,40 @@ export const Create = () => {
       });
   }, []);
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (!file.type.startsWith("image/")) {
+        alert("El archivo seleccionado no es una imagen.");
+        return;
+      }
+
+      const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5 MB
+      if (file.size > MAX_IMAGE_SIZE) {
+        alert("La imagen es demasiado grande. Debe ser menor de 5 MB.");
+        return;
+      }
+
+      // Crear una URL temporal para la imagen
+      const imageUrl = URL.createObjectURL(file);
+
+      // Guarda el archivo en el estado formData y la URL en el estado imageUrl
+      setFormData({ ...formData, image: file });
+      setImageUrl(imageUrl);
+    }
+  };
+
   const handleFieldChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const onSaleValue = formData.onSale === "true";
-
   const handleTypeProductChange = (event) => {
     const selectedValue = event.target.value;
-    setSelectedOption(selectedValue); // Actualiza la opción seleccionada en el estado
-
-    // Agrega el ID del typeProduct al objeto formData
+    setSelectedOption(selectedValue);
     setFormData({ ...formData, typeProduct: selectedValue });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -66,11 +86,18 @@ export const Create = () => {
         return;
       }
 
-      // Incluye "typeProductIds" en los datos que se envían en la solicitud POST solo si el tipo es "producto"
-      const dataToSend =
-        tipo === "producto" ? { ...formData, onSale: onSaleValue } : formData;
-      const response = await fetchDataFunction(dataToSend);
-      console.log(response);
+      // Crea un objeto FormData para enviar datos, incluyendo la imagen si está presente
+      const formDataToSend = new FormData();
+      for (const key in formData) {
+        formDataToSend.append(key, formData[key]);
+      }
+
+      // Agrega la imagen al FormData si el tipo es "producto"
+      if (tipo === "producto") {
+        formDataToSend.append("image", formData.image);
+      }
+
+      const response = await fetchDataFunction(formDataToSend);
       history(`/lista/${tipo}`);
     } catch (error) {
       console.error("Error al crear el elemento:", error.message);
@@ -79,7 +106,9 @@ export const Create = () => {
 
   return (
     <div>
-      <Link to="/menu" className="custom-button">REGRESAR</Link>
+      <Link to="/menu" className="custom-button">
+        REGRESAR
+      </Link>
       <h1>
         Crear Nuevo{" "}
         {tipo === "producto"
@@ -88,12 +117,12 @@ export const Create = () => {
           ? "Persona"
           : "Tipo"}
       </h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         {allFields[tipo].map((field, index) => (
           <div key={field}>
             {field === "typeProduct" && tipo === "producto" ? (
               // Campo de selección múltiple para "typeProduct" solo si el tipo es "producto"
-              <div >
+              <div>
                 <label>Tipo de producto:</label>
                 <select
                   name="typeProduct" // Nombre del campo
@@ -110,17 +139,33 @@ export const Create = () => {
                   ))}
                 </select>
               </div>
+            ) : field === "image" && tipo === "producto" ? (
+              <div>
+                <label>Imagen: </label>
+                <input
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={handleImageChange} // Agregamos el controlador de cambio para la imagen
+                />
+                {imageUrl && (
+                  <div>
+                    <label>Imagen Previa: </label>
+                    <img src={imageUrl} alt="Vista previa de la imagen" />
+                  </div>
+                )}
+              </div>
             ) : field === "onSale" ? (
               // Campo de selección para "onSale" (En oferta / En stock)
               <div>
                 <label>Estado: </label>
                 <select
-                  name={field}
-                  value={formData[field]} // Valor predeterminado "En stock" (false)
+                  name="onSale"
+                  value={formData.onSale}
                   onChange={handleFieldChange}
                 >
                   <option value="" disabled>
-                    Seleccionar
+                    Selecciona el estado
                   </option>
                   <option value="true">En oferta</option>
                   <option value="false">En stock</option>

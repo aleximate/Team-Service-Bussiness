@@ -24,7 +24,15 @@ export const List = () => {
   };
 
   const columnHeaders = {
-    producto: ["ID", "Nombre", "Precio", "Estado", "Tipo de Producto", "Acciones"],
+    producto: [
+      "ID",
+      "Nombre",
+      "Precio",
+      "Estado",
+      "Tipo de Producto",
+      "Imagen",
+      "Acciones",
+    ],
     persona: [
       "ID",
       "Nombre",
@@ -38,14 +46,25 @@ export const List = () => {
   };
   const handleEdit = (itemId) => {
     setSelectedItemId(itemId);
-    history.push(`/update/${tipo}`);
+    history(`/actualizar/${tipo}/${itemId}`);
   };
 
   const customFields = {
-    producto: ["id", "name", "price", "onSale", "typeProduct", "actions"], // Asegúrate de que "actions" esté aquí
-    persona: ["id", "name", "lastName", "email", "birthDate", "dni", "actions"], // Asegúrate de que "actions" esté aquí
-    tipos: ["id", "name", "actions"], // Asegúrate de que "actions" esté aquí
+    producto: [
+      "id",
+      "name",
+      "price",
+      "onSale",
+      "typeProduct",
+      "image",
+      "actions",
+    ],
+    persona: ["id", "name", "lastName", "email", "birthDate", "dni", "actions"],
+    tipos: ["id", "name", "actions"],
   };
+
+  const isImageColumnVisible = tipo === "producto";
+
   const handleDelete = async (itemId) => {
     try {
       const deleteFunction = fetchDeleteByType[tipo];
@@ -63,6 +82,7 @@ export const List = () => {
       console.error("Error al eliminar el elemento:", error);
     }
   };
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -109,10 +129,13 @@ export const List = () => {
         </thead>
         <tbody>
           {data.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} className={selectedItemId === item.id ? 'selected-row' : ''}>
               {customFields[tipo].map((field) => (
                 <td key={field}>
-                  {field === "onSale" ? (
+                  {field === "image" && isImageColumnVisible ? (
+                  <img src={`data:image/jpeg;base64,${item.image}`} alt="Imagen del producto" />
+
+                  ) : field === "onSale" ? (
                     item[field] ? (
                       "En oferta"
                     ) : (
@@ -122,10 +145,16 @@ export const List = () => {
                     item.typeProduct.name
                   ) : field === "actions" ? (
                     <>
-                      <button onClick={() => handleEdit(item.id)} className="btn-update">
+                      <button
+                        onClick={() => handleEdit(item.id)}
+                        className="btn-update"
+                      >
                         Editar
                       </button>
-                      <button onClick={() => handleDelete(item.id)} className="btn-delete">
+                      <button
+                        onClick={() => handleDelete(item.id)}
+                        className="btn-delete"
+                      >
                         Eliminar
                       </button>
                     </>
