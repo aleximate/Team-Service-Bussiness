@@ -1,9 +1,9 @@
-/* Menu.css */
+/*
 body {
-    background-color: #E6F0F9; /* Color de fondo para el body */
+    background-color: #E6F0F9; 
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif; /* Fuente de texto predeterminada */
+    font-family: Arial, sans-serif; 
   }
   
 ul {
@@ -26,8 +26,8 @@ ul {
     background-color: #349FDF;
     border-radius: 1vw;
     padding: 1vw;
-    width: 8vw; /* Ancho fijo */
-    height: 9vw; /* Altura fija mayor que el ancho */
+    width: 8vw;
+    height: 9vw; 
     display: flex;
     flex-direction: column;
     justify-content:center;
@@ -56,4 +56,4 @@ p{
   color: red;
   text-decoration: underline;
   
-}
+}*/
