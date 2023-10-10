@@ -1,5 +1,7 @@
-export const Home=()=>{
+import { Banner } from "../Shared/Banner"
+
+export const Home = () => {
     return(
-        <h1>Hola</h1>
+        <Banner/>
     )
 }

@@ -103,3 +103,12 @@ p{
 h2{
   color: #949fb4
 }
+
+/************************************************************
+****************BANNERS*************************************/
+.banner-image {
+  width: 100%;
+  /* Hacer que la imagen ocupe todo el ancho de su contenedor */
+  height: 500px;
+  /* Mantener la relación de aspecto original */
+}

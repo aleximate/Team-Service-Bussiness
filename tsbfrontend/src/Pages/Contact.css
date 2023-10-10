@@ -1,0 +1,11 @@
+.contact-contact {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-contact-1 {
+    width: 90%;
+    max-width: 1200px;
+    background-color: blue;
+}

@@ -1,0 +1,45 @@
+.storage-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.storage-container-1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 90%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Cuatro columnas de igual ancho */
+    gap: 30px;
+    /* Espacio entre las secciones */
+    justify-content: space-evenly;
+}
+
+.storage-section {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid #1EA1F8;
+    border-radius: 20px;
+    padding: 10px;
+    /* Agregar padding de 10px en todas las direcciones */
+}
+
+.storage-section p {
+    margin-left: 10px;
+    /* Agregar margen izquierdo de 10px a los párrafos dentro de .storage-section */
+}
+
+/* Estilos para centrar la imagen */
+.storage-img {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: 10px auto;
+}
+
+.on-sale{
+    color: red;
+    font-weight: bold;
+}

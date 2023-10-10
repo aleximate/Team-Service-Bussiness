@@ -130,6 +130,9 @@ table tr:nth-child(odd) {
   border-radius: 1vw;
 }
 
+.list-img{
+  width: 100px;
+}
 .tabla {
   width: 100%;
   border-collapse: collapse;
