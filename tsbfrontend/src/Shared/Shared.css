@@ -25,7 +25,7 @@
 .navbar-link {
   list-style-type: none;
   padding: 0;
-}
+} 
 
 /* Estilos para cada elemento de la lista de enlaces */
 .navbar-link li {
@@ -33,7 +33,7 @@
   margin-right: 20px;
 
 }
-
+ 
 /* Estilos para los enlaces en el navbar */
 .navbar-link-1 {
   text-decoration: none;
@@ -61,45 +61,127 @@
 
 .footer-footer-1 {
   width: 90%;
-  max-width: 1200px;
+  max-width: 90vw;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  /* Divide el espacio en 4 columnas iguales */
-  gap: 10px;
+  grid-template-columns: 2fr 1fr 1fr 1fr;  
+  gap: 1vw;
   /* Espacio entre las columnas */
 }
 
 .grid-item {
   display: flex;
   flex-direction: column;
-
-  justify-content: center;
-
+  justify-content: start;
   background-color: #e3e6f3;
-
-  padding: 10px;
-
+  padding: 1vw;
+  font-family: 'Roboto', sans-serif;
 }
 
-h3,h2,p{
-    font-family: 'Roboto', sans-serif;
+.grid-item-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  background-color: #e3e6f3;
+  padding: 1vw;
+  font-family: 'Roboto', sans-serif;
 }
-h3{
-  
-  color: #606165;
+.grid-item h2{
+  margin: 1vw 0;
+  color: #000;
+  font-size: 1.2vw;
 }
 
-p{
-  color:#949fb4
+.grid-item p{
+  font-size: 1vw;
+}
+
+.grid-item-2 h3{
+  margin-bottom: 1.5vw;
+  margin-top: 1vw;
+  font-size: 1.2vw;
+}
+.grid-item-2 p{
+  margin-bottom: 1.2vw;
+  font-size: 1vw;
 }
 
 .footer-logo{
-    width: 100px;
+    width: 7vw;
+    margin: 1vw 0;
+}
+.container-contact{
+  display:flex;
+  margin-bottom: 1vw;
+}
+.container-contact p{
+  margin-left: 0.5vw;
 }
 
-h2{
-  color: #949fb4
+.container-contact h3{
+  font-size: 1vw;
+}
+
+.derechos-container{
+  font-size: 1.3vw;
+  margin-bottom: 3vw;
+}
+
+@media (max-width: 450px) {
+  .grid-item{
+    width: 32vw;
+    margin-left: 10vw;
+  }
+  .grid-item-2{
+    align-items: center; 
+    /* Centra el contenido del footer */
+  }
+
+  .container-contact{
+    right: 20%;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  
+    gap: 2vw;
+    
+    /* Espacio entre las columnas */
+  }
+  .container-contact{
+    text-align: center;
+    
+  }
+
+  .container-contact p{
+    font-size: 2vw;
+  }
+  
+  .container-contact h3{
+    font-size: 2vw;
+  }
+
+  .grid-item h2{
+    margin: 1vw 0;
+    color: #000;
+    font-size: 2.2vw;
+  }
+  
+  .grid-item p{
+    font-size: 2vw;
+  }
+  
+  .grid-item-2 h3{
+    font-size: 2.2vw;
+  }
+  .grid-item-2 p{
+    font-size: 2vw;
+  }
+
+  .derechos-container{
+    font-size: 2.3vw;
+    margin-top: 5vw;
+  }
 }
