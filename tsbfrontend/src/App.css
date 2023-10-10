@@ -1,0 +1,25 @@
+*{
+    margin:0
+    
+}
+/* Estilos para el contenedor principal */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Esto asegura que ocupe al menos toda la altura de la ventana */
+}
+
+/* Estilos para el contenedor del contenido */
+.content-container {
+    flex-grow: 1;
+    /* Esto hace que el contenido se expanda para llenar el espacio disponible */
+}
+
+/* Estilos para el Footer (puedes ajustar según tus necesidades) */
+/* footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+} */

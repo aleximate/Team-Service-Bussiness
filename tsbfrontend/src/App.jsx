@@ -13,13 +13,16 @@ import { Storage } from "./Pages/Storage";
 
 function Pages() {
   return (
-    <>
+    <div className="main-container">
       <Navbar />
-      <Outlet/>
+      <div className="content-container">
+        <Outlet />
+      </div>
       <Footer/>
-    </>
+    </div>
   );
 }
+
 
 function App() {
   return (

@@ -4,6 +4,7 @@ import { faShop } from "@fortawesome/free-solid-svg-icons";
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import "./Menu.css";
+import { Footer } from "../Shared/Footer";
 
 export const Menu = () => {
   return (

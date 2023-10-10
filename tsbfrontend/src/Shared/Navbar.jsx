@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Shared.css"
+import logo from ".././assets/logo.png"
 export const Navbar=()=>{
   const Links = [
     { path: "/", name: "Inicio" },
@@ -10,8 +11,8 @@ export const Navbar=()=>{
   return (
     <header className="navbar-header">
       <nav className="navbar-header-1">
-        <Link to="/" className="navbar-logo">
-          <img className="navbar-img" src=""/>
+        <Link to="/">
+          <img className="navbar-logo" src={logo} />
         </Link>
         <ul className="navbar-link">
           {Links.map((item, index) => (
