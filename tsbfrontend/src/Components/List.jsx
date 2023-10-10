@@ -133,7 +133,7 @@ export const List = () => {
               {customFields[tipo].map((field) => (
                 <td key={field}>
                   {field === "image" && isImageColumnVisible ? (
-                  <img src={`data:image/jpeg;base64,${item.image}`} alt="Imagen del producto" />
+                  <img className="list-img"src={`data:image/jpeg;base64,${item.image}`} alt="Imagen del producto" />
                   ) : field === "onSale" ? (
                     item[field] ? (
                       "En oferta"
