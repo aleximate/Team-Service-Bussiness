@@ -95,3 +95,140 @@ table tr:nth-child(odd) {
 }
 
 */
+
+/* styles.css */
+
+.contenedor {
+  text-align: center;
+  padding: 1vw;
+  margin: auto;
+}
+
+.enlace-atras,
+.enlace-crear {
+  display: inline-block;
+  margin: 1.5vw;
+  padding: 1.5vw 3vw;
+  background-color: #349FDF;
+  border-radius: 1.5vw;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.enlace-atras:hover,
+.enlace-crear:hover {
+  background-color: #1EA1F8;
+}
+
+.titulo {
+  background-color: #E6F0F9;
+  color: #0108A7;
+  padding: 1vw;
+  margin: 1vw 0;
+  border-radius: 1vw;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1vw;
+}
+
+.tabla th,
+.tabla td {
+  padding: 1vw;
+  text-align: center;
+  border: 0.1vw solid #349FDF;
+}
+
+.tabla th {
+  background-color: #1EA1F8;
+  color: #fff;
+}
+
+.tabla tr:nth-child(even) {
+  background-color: #E6F0F9;
+}
+
+.tabla tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.boton-personalizado {
+  display: inline-block;
+  padding: 1vw 3vw;
+  background-color: #349FDF; 
+  border-radius: 1vw;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  border: 0.1vw solid #349FDF;
+  cursor: pointer;
+}
+
+.contenedor-boton {
+  display: flex;
+  justify-content: space-between;
+}
+
+.boton-personalizado:hover {
+  background-color: #1EA1F8; 
+  border: 0.1vw solid hsl(204, 94%, 55%);
+}
+
+.boton-actualizar {
+  background-color: #349FDF;
+  color: white;
+  border-style: none;
+  margin: 0 0.2vw;
+  border-radius: 0.75vw;
+}
+
+.boton-eliminar {
+  background-color: #FF2626;
+  color: white;
+  border-style: none;
+  padding: 1vw 2.5vw;
+  margin: 0 0.2vw;
+  border-radius: 0.75vw;
+}
+
+.fila-seleccionada {
+  background-color: #f5f5f5;
+}
+
+@media screen and (max-width: 870px) {
+  .enlace-atras,
+  .enlace-crear,
+  .boton-personalizado {
+    margin: 1vw;
+    padding: 1.5vw 2vw;
+    font-size: 1.6vw;
+  }
+
+.boton-actualizar {
+  padding: 1.5vw 3vw ;
+}
+}
+
+
+@media screen and (max-width: 440px) {
+  .titulo{
+    width: 23rem;
+    margin-left: 3vw;
+  }
+  .contenedor-boton{
+    width: 24.8rem;
+  }
+  .enlace-atras,
+  .enlace-crear,
+  .boton-personalizado {
+    margin: 1vw;
+    width: 15vw;
+    font-size: 2.5vw;
+  }
+}
+
