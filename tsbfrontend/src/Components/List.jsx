@@ -102,8 +102,8 @@ export const List = () => {
   }, [tipo]);
 
   return (
-    <div>
-      <h1>
+    <div className="contenedor">
+      <h1 className="titulo">
         Lista de{" "}
         {tipo === "producto"
           ? "Productos"
@@ -112,14 +112,14 @@ export const List = () => {
           : "Tipos"}
       </h1>
       <div className="contenedor-boton">
-        <Link to={`/menu`} className="custom-button">
+        <Link to={`/menu`} className="boton-personalizado enlace-atras">
           REGRESAR
         </Link>
-        <Link to={`/create/${tipo}`} className="custom-button">
+        <Link to={`/create/${tipo}`} className="boton-personalizado enlace-crear">
           Crear Nuevo
         </Link>
       </div>
-      <table>
+      <table className="tabla">
         <thead>
           <tr>
             {columnHeaders[tipo].map((header) => (
@@ -129,12 +129,11 @@ export const List = () => {
         </thead>
         <tbody>
           {data.map((item) => (
-            <tr key={item.id} className={selectedItemId === item.id ? 'selected-row' : ''}>
+            <tr key={item.id} className={selectedItemId === item.id ? 'fila-seleccionada' : ''}>
               {customFields[tipo].map((field) => (
                 <td key={field}>
                   {field === "image" && isImageColumnVisible ? (
                   <img src={`data:image/jpeg;base64,${item.image}`} alt="Imagen del producto" />
-
                   ) : field === "onSale" ? (
                     item[field] ? (
                       "En oferta"
@@ -147,13 +146,13 @@ export const List = () => {
                     <>
                       <button
                         onClick={() => handleEdit(item.id)}
-                        className="btn-update"
+                        className="boton-personalizado boton-actualizar"
                       >
                         Editar
                       </button>
                       <button
                         onClick={() => handleDelete(item.id)}
-                        className="btn-delete"
+                        className="boton-personalizado boton-eliminar"
                       >
                         Eliminar
                       </button>

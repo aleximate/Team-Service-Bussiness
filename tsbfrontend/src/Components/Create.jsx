@@ -105,11 +105,11 @@ export const Create = () => {
   };
 
   return (
-    <div>
-      <Link to="/menu" className="custom-button">
+    <div className="contenedor-create">
+      <Link to="/menu" className="boton-perzonalizado">
         REGRESAR
       </Link>
-      <h1>
+      <h1 className="titulo-create">
         Crear Nuevo{" "}
         {tipo === "producto"
           ? "Producto"
@@ -119,12 +119,13 @@ export const Create = () => {
       </h1>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         {allFields[tipo].map((field, index) => (
-          <div key={field}>
+          <div key={field} className="contenedor-create">
             {field === "typeProduct" && tipo === "producto" ? (
               // Campo de selección múltiple para "typeProduct" solo si el tipo es "producto"
-              <div>
-                <label>Tipo de producto:</label>
+              <div className="contenedor-subtitulo">
+                <label className="nombre-subtitulo">Tipo de producto:</label>
                 <select
+                  className="select-subtitulo"
                   name="typeProduct" // Nombre del campo
                   onChange={handleTypeProductChange} // Usamos handleTypeProductChange aquí
                   value={selectedOption}
@@ -140,9 +141,10 @@ export const Create = () => {
                 </select>
               </div>
             ) : field === "image" && tipo === "producto" ? (
-              <div>
-                <label>Imagen: </label>
+              <div className="contenedor-subtitulo">
+                <label className="nombre-subtitulo">Imagen: </label>
                 <input
+                  className="input-subtitulo"
                   type="file"
                   name="image"
                   accept="image/*"
@@ -150,16 +152,17 @@ export const Create = () => {
                 />
                 {imageUrl && (
                   <div>
-                    <label>Imagen Previa: </label>
+                    <label className="nombre-subtitulo">Imagen Previa: </label>
                     <img src={imageUrl} alt="Vista previa de la imagen" />
                   </div>
                 )}
               </div>
             ) : field === "onSale" ? (
               // Campo de selección para "onSale" (En oferta / En stock)
-              <div>
-                <label>Estado: </label>
+              <div className="contenedor-subtitulo">
+                <label className="nombre-subtitulo">Estado: </label>
                 <select
+                  className="select-subtitulo"
                   name="onSale"
                   value={formData.onSale}
                   onChange={handleFieldChange}
@@ -173,9 +176,10 @@ export const Create = () => {
               </div>
             ) : (
               // Otros campos de texto
-              <div>
-                <label>{columnHeaders[tipo][index]}: </label>
-                <input
+              <div className="contenedor-subtitulo"> 
+                <label className="nombre-subtitulo">{columnHeaders[tipo][index]}: </label>
+                <input 
+                  className="input-subtitulo"
                   type="text"
                   name={allFields[tipo][index]}
                   value={formData[allFields[tipo][index]] || ""}
@@ -186,7 +190,7 @@ export const Create = () => {
             )}
           </div>
         ))}
-        <button type="submit">Guardar</button>
+        <button className="boton-guardar-producto" type="submit">Guardar</button>
       </form>
     </div>
   );
