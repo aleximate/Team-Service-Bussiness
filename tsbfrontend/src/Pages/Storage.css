@@ -23,6 +23,7 @@
     text-align: left;
     border: 1px solid #1EA1F8;
     border-radius: 20px;
+    height: 270px;
     padding: 10px;
     cursor: pointer;
     /* Agregar padding de 10px en todas las direcciones */
@@ -30,8 +31,7 @@
 
 .storage-section p {
     margin-left: 10px;
-
-    /* Agregar margen izquierdo de 10px a los párrafos dentro de .storage-section */
+    ;
 }
 
 /* Estilos para centrar la imagen */

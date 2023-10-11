@@ -1,6 +1,6 @@
-import logo from "../assets/logo.png"
+import logo from "../assets/logo.png";
 export const Footer = () => {
-  return ( 
+  return (
     <footer className="footer-footer">
       <div className="footer-footer-1">
         <section className="grid-container">
@@ -15,7 +15,7 @@ export const Footer = () => {
               <h3>Telefono:</h3>
               <p>+51 949165118</p>
             </div>
-            <div className="container-contact"> 
+            <div className="container-contact">
               <h3>Horario:</h3>
               <p>24 hs Lunes-Domingo</p>
             </div>
@@ -43,7 +43,9 @@ export const Footer = () => {
           </div>
         </section>
       </div>
-      <h2 className="derechos-container">2023 Todos los derechos reservados LaptopExpress</h2>
+      <h2 className="derechos-container">
+        2023 Todos los derechos reservados LaptopExpress
+      </h2>
     </footer>
   );
 };

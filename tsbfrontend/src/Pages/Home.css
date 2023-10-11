@@ -23,6 +23,7 @@
 }
 
 .home-main-text {
+    margin-top: 50px;
     font-weight: bold;
     text-align: center;
 }
@@ -37,6 +38,7 @@
     text-align: left;
     border: 1px solid #1EA1F8;
     border-radius: 20px;
+    height: 270px;
     padding: 10px;
     cursor: pointer;
 }

@@ -18,8 +18,6 @@ export const Banner = () => {
       slidesPerView={1}
       navigation
       loop={true}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
     >
       <SwiperSlide>
         <img src={slide_1} className="banner-image" alt="Slide 1" />

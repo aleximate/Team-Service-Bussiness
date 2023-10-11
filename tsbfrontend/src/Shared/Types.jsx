@@ -35,8 +35,6 @@ export const Types = () => {
       slidesPerView={5} // Mostrar inicialmente 4 nombres de tipo
       navigation
       loop={true}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log("slide change")}
     >
       {types.map((type, index) => (
         <SwiperSlide key={index} className="swiper-container">
