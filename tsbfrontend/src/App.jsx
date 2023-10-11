@@ -11,6 +11,7 @@ import { Contact } from "./Pages/Contact";
 import { About } from "./Pages/About";
 import { Storage } from "./Pages/Storage";
 import { Detail } from "./Shared/Detail";
+import { ProductByType } from "./Pages/ProductByType"
 
 function Pages() {
   return (
@@ -36,7 +37,8 @@ function App() {
           <Route path="/Nosotros" element={<About/>} />
           <Route path="/Tienda" element={<Storage/>} />
           <Route path="/Contacto" element={<Contact />} />
-          <Route path="/Producto-Detallado/:id" element={<Detail/>} />
+          <Route path="/Producto-Detallado/:id" element={<Detail />} />
+          <Route path="/Producto-Tipo/:id" element={<ProductByType/>}/>
         </Route>
         <Route path="/menu" element={<Menu />} />
         <Route path="/create/:tipo" element={<Create />} />

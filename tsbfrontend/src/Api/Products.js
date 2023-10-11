@@ -6,7 +6,11 @@ export const getAllProducts=()=>{
 
 export const getProductById = (id) => {
     return axios.get('http://localhost:8080/product/'+id);
-  };
+};
+  
+export const getProductByType = (id) => {
+    return axios.get("http://localhost:8080/product/type/"+id);
+}
 
 export const getProductOnSale = () => {
     return axios.get('http://localhost:8080/product/onsale')

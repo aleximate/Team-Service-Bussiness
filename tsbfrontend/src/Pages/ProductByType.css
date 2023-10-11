@@ -1,0 +1,33 @@
+.productByType-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.productByType-container-2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 90%;
+    max-width: 1200px;
+
+}
+
+.productByType-container-2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Cuatro columnas de igual ancho */
+    gap: 30px;
+    /* Espacio entre las secciones */
+    justify-content: space-evenly;
+}
+
+.productByType-section {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid #1EA1F8;
+    border-radius: 20px;
+    height: 270px;
+    padding: 10px;
+    cursor: pointer;
+}
