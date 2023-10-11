@@ -12,8 +12,6 @@ public class TsbbackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TsbbackendApplication.class, args);
 	}
-
-
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {

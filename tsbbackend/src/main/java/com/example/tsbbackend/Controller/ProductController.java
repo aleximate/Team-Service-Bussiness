@@ -37,8 +37,8 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
     @GetMapping(path = "/onsale")
-    public ResponseEntity<List<SaveProductDto>>getOnSale(){
-        List<SaveProductDto>saveProductDtos=productService.getOnSaleProduct();
+    public ResponseEntity<List<ProductDto>>getOnSale(){
+        List<ProductDto>saveProductDtos=productService.getOnSaleProduct();
         return new ResponseEntity<>(saveProductDtos,HttpStatus.OK);
     }
 

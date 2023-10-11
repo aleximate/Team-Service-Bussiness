@@ -27,7 +27,7 @@ public class ProductService {
         return productRepository.findProduct();
     }
 
-    public List<SaveProductDto> getOnSaleProduct(){
+    public List<ProductDto> getOnSaleProduct(){
         return productRepository.productOnSale();
     }
 

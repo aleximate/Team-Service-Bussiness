@@ -31,18 +31,23 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
     public List<ProductDto> findProduct();
 
     @Query(value = """
-            SELECT NEW com.example.tsbbackend.Dto.SaveProductDto(
+            SELECT NEW com.example.tsbbackend.Dto.ProductDto(
+                p.id,
                 p.name,
                 p.price,
+                p.image,
                 p.onSale,
-                tp.id
-            )
+                NEW com.example.tsbbackend.Dto.TypeProductDto
+                (
+                tp.id,
+                tp.name)
+                )
             FROM Product p
             INNER JOIN p.typeProduct tp
             WHERE p.onSale = true
             """
     )
-    public List<SaveProductDto>productOnSale();
+    public List<ProductDto>productOnSale();
 
 
 
