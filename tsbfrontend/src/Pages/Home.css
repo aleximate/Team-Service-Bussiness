@@ -1,14 +1,14 @@
-.storage-container {
+.home-container {
+    margin-top: 25px;
+    margin-bottom: 25px;
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.storage-container-1 {
+.home-container-onSale {
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 90%;
-    max-width: 1200px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     /* Cuatro columnas de igual ancho */
@@ -17,7 +17,21 @@
     justify-content: space-evenly;
 }
 
-.storage-section {
+.home-container-1 {
+    width: 90%;
+    max-width: 1200px;
+}
+
+.home-main-text {
+    font-weight: bold;
+    text-align: center;
+}
+
+.home-second-text {
+    text-align: center;
+}
+
+.home-section {
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -25,24 +39,11 @@
     border-radius: 20px;
     padding: 10px;
     cursor: pointer;
-    /* Agregar padding de 10px en todas las direcciones */
 }
 
-.storage-section p {
-    margin-left: 10px;
-
-    /* Agregar margen izquierdo de 10px a los párrafos dentro de .storage-section */
-}
-
-/* Estilos para centrar la imagen */
-.storage-img {
+.home-img {
     width: 200px;
     height: 180px;
     display: block;
     margin: 10px auto;
-}
-
-.on-sale {
-    color: red;
-    font-weight: bold;
 }

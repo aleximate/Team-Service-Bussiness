@@ -194,3 +194,25 @@
   height: 500px;
   /* Mantener la relación de aspecto original */
 }
+
+
+/*************************************************************
+*********************TYPES***********************************/
+.swiper-container {
+  padding: 15px;
+  /* Agrega espacio alrededor del Swiper */
+}
+.type-section{
+  color:white;
+  padding: 15px 0;
+  border: 1px solid skyblue;
+  border-radius: 2px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.type-p{
+  background-color:skyblue;
+  display: inline;
+  text-transform: uppercase;
+}

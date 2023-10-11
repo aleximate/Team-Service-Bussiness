@@ -10,6 +10,7 @@ import { Footer } from "./Shared/Footer";
 import { Contact } from "./Pages/Contact";
 import { About } from "./Pages/About";
 import { Storage } from "./Pages/Storage";
+import { Detail } from "./Shared/Detail";
 
 function Pages() {
   return (
@@ -34,7 +35,8 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/Nosotros" element={<About/>} />
           <Route path="/Tienda" element={<Storage/>} />
-          <Route path="/Contacto" element={<Contact/>} />
+          <Route path="/Contacto" element={<Contact />} />
+          <Route path="/Producto-Detallado/:id" element={<Detail/>} />
         </Route>
         <Route path="/menu" element={<Menu />} />
         <Route path="/create/:tipo" element={<Create />} />

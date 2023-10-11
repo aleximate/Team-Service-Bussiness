@@ -8,6 +8,9 @@ export const getProductById = (id) => {
     return axios.get('http://localhost:8080/product/'+id);
   };
 
+export const getProductOnSale = () => {
+    return axios.get('http://localhost:8080/product/onsale')
+}
 export const createProducts=(product)=>{
     return axios.post('http://localhost:8080/product',product)
 }
