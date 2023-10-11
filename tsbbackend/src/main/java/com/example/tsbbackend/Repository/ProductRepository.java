@@ -50,6 +50,22 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
     public List<ProductDto>productOnSale();
 
 
+    @Query(value = """
+    SELECT new com.example.tsbbackend.Dto.ProductDto(
+    p.id,
+    p.name,
+    p.price,
+    p.image,
+    p.onSale,
+    NEW com.example.tsbbackend.Dto.TypeProductDto(tp.id, tp.name)
+    )
+    FROM Product p
+    INNER JOIN p.typeProduct tp
+    WHERE tp.id = :typeProductId
+    """
+    )
+    public List<ProductDto> findProductsByTypeProductId(@Param("typeProductId") Integer typeProductId);
+
 
     @Query(value = """
         SELECT new com.example.tsbbackend.Dto.ProductDto(

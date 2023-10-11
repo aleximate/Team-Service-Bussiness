@@ -31,6 +31,10 @@ public class ProductService {
         return productRepository.productOnSale();
     }
 
+    public List<ProductDto> getProductByType(Integer id){
+        return productRepository.findProductsByTypeProductId(id);
+    }
+
     public List<ProductDto>getProductById(Integer id){
         return productRepository.findProductById(id);
     }

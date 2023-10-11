@@ -42,6 +42,12 @@ public class ProductController {
         return new ResponseEntity<>(saveProductDtos,HttpStatus.OK);
     }
 
+    @GetMapping(path = "/type/{typeId}")
+    public ResponseEntity<List<ProductDto>>getProductByType(@PathVariable("typeId") Integer typeId){
+        List<ProductDto>productDtos=productService.getProductByType(typeId);
+        return new ResponseEntity<>(productDtos,HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Product>save(@ModelAttribute SaveProductDto product,@RequestParam("image") MultipartFile image) throws IOException {
 
