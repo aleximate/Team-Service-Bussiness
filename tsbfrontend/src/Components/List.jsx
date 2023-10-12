@@ -3,6 +3,7 @@ import { deleteProduct, getAllProducts } from "../Api/Products";
 import { deleteConsumer, getAllConsumers } from "../Api/Consumers";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteType, getAllTypes } from "../Api/TypeProducts";
+import Swal from "sweetalert2";
 import "./List.css";
 
 export const List = () => {
@@ -13,13 +14,13 @@ export const List = () => {
 
   const fetchDataByType = {
     producto: getAllProducts,
-    persona: getAllConsumers,
+    trabajador: getAllConsumers,
     tipos: getAllTypes,
   };
 
   const fetchDeleteByType = {
     producto: deleteProduct,
-    persona: deleteConsumer,
+    trabajador: deleteConsumer,
     tipos: deleteType,
   };
 
@@ -33,7 +34,7 @@ export const List = () => {
       "Imagen",
       "Acciones",
     ],
-    persona: [
+    trabajador: [
       "ID",
       "Nombre",
       "Apellido",
@@ -59,29 +60,45 @@ export const List = () => {
       "image",
       "actions",
     ],
-    persona: ["id", "name", "lastName", "email", "birthDate", "dni", "actions"],
+    trabajador: ["id", "name", "lastName", "email", "birthDate", "dni", "actions"],
     tipos: ["id", "name", "actions"],
   };
 
   const isImageColumnVisible = tipo === "producto";
 
-  const handleDelete = async (itemId) => {
-    try {
-      const deleteFunction = fetchDeleteByType[tipo];
-      if (deleteFunction) {
+const handleDelete = async (itemId) => {
+  try {
+    const deleteFunction = fetchDeleteByType[tipo];
+    if (deleteFunction) {
+      const result = await Swal.fire({
+        title: "¿Estas seguro de eliminar?",
+        text: "No podras recuperar los datos",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, eliminar",
+      });
+
+      if (result.isConfirmed) {
+        // Ejecuta la función de eliminación si el usuario confirma
         await deleteFunction(itemId);
         // Actualiza la lista después de eliminar el elemento
         setData((prevData) => prevData.filter((item) => item.id !== itemId));
-      } else {
-        console.error(
-          "No se encontró una función de eliminación para el tipo:",
-          tipo
-        );
+
+        // Muestra un mensaje de éxito
+        Swal.fire("Eliminado", "Tu item ha sido eliminado", "Satisfactoriamente");
       }
-    } catch (error) {
-      console.error("Error al eliminar el elemento:", error);
+    } else {
+      console.error(
+        "No se encontró una función de eliminación para el tipo:",
+        tipo
+      );
     }
-  };
+  } catch (error) {
+    console.error("Error al eliminar el elemento:", error);
+  }
+};
 
   useEffect(() => {
     async function fetchData() {
@@ -107,8 +124,8 @@ export const List = () => {
         Lista de{" "}
         {tipo === "producto"
           ? "Productos"
-          : tipo === "persona"
-          ? "Personas"
+          : tipo === "trabajador"
+          ? "Trabajador"
           : "Tipos"}
       </h1>
       <div className="contenedor-boton">

@@ -6,7 +6,8 @@ export const Navbar=()=>{
     { path: "/", name: "Inicio" },
     { path: "/Tienda", name: "Tienda" },
     { path: "/Contacto", name: "Contacto" },
-    { path: "/Nosotros", name: "Nosotros" }
+    { path: "/Nosotros", name: "Nosotros" },
+    { path: "/Login", name:"Ingresar"}
   ];
   return (
     <header className="navbar-header">

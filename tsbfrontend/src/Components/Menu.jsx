@@ -1,11 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShop } from "@fortawesome/free-solid-svg-icons";
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import "./Menu.css";
-import { Footer } from "../Shared/Footer";
+
 
 export const Menu = () => {
   return (
@@ -21,10 +20,10 @@ export const Menu = () => {
           </Link>
         </li>
         <li className="menu-item">
-          <Link to="/lista/persona" className="menu-link">
+          <Link to="/lista/trabajador" className="menu-link">
             <div className="menu-button menu-person">
               <FontAwesomeIcon icon={faPerson} className="icon menu-icon" />
-              <span className="menu-text">Personas</span>
+              <span className="menu-text">Trabjadores</span>
             </div>
           </Link>
         </li>

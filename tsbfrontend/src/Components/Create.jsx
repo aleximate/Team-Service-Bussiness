@@ -14,19 +14,19 @@ export const Create = () => {
 
   const fetchDataByType = {
     producto: createProducts,
-    persona: createConsumers,
+    trabajador: createConsumers,
     tipos: createTypes,
   };
 
   const columnHeaders = {
     producto: ["Nombre", "Precio"],
-    persona: ["Nombre", "Apellido", "Email", "Fecha de Nacimiento", "DNI"],
+    trabajador: ["Nombre", "Apellido", "Email", "Fecha de Nacimiento", "DNI","Contraseña"],
     tipos: ["Nombre"],
   };
 
   const allFields = {
     producto: ["name", "price", "onSale", "typeProduct", "image"],
-    persona: ["name", "lastName", "email", "birthDate", "dni"],
+    trabajador: ["name", "lastName", "email", "birthDate", "dni","password"],
     tipos: ["name"],
   };
 
@@ -113,8 +113,8 @@ export const Create = () => {
         Crear Nuevo{" "}
         {tipo === "producto"
           ? "Producto"
-          : tipo === "persona"
-          ? "Persona"
+          : tipo === "trabajador"
+          ? "Trabajador"
           : "Tipo"}
       </h1>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
