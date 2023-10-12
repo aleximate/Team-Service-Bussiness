@@ -4,11 +4,14 @@ import com.example.tsbbackend.Dto.ProductDto;
 import com.example.tsbbackend.Model.Consumer;
 import com.example.tsbbackend.Repository.ConsumerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -34,15 +37,23 @@ public class ConsumerController {
             @RequestParam("name") String name,
             @RequestParam("lastName") String lastName,
             @RequestParam("email") String email,
-            @RequestParam("birthDate") Date birthDate,
-            @RequestParam("dni") String dni){
+            @RequestParam("birthDate") String birthDateStr,
+            @RequestParam("dni") String dni,
+            @RequestParam("password") String password) {
         try {
             Consumer consumer = new Consumer();
             consumer.setName(name);
             consumer.setLastName(lastName);
             consumer.setEmail(email);
+
+            // Convierte la cadena de fecha en un LocalDate
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate birthDate = LocalDate.parse(birthDateStr, dateFormatter);
             consumer.setBirthDate(birthDate);
+
             consumer.setDni(dni);
+            consumer.setPassword(password);
+
             Consumer savedConsumer = consumerRepository.save(consumer);
             return new ResponseEntity<>(savedConsumer, HttpStatus.OK);
         } catch (Exception e) {
@@ -56,8 +67,9 @@ public class ConsumerController {
             @RequestParam("name") String name,
             @RequestParam("lastName") String lastName,
             @RequestParam("email") String email,
-            @RequestParam("birthDate") Date birthDate,
-            @RequestParam("dni") String dni) {
+            @RequestParam("birthDate") String birthDateStr,
+            @RequestParam("dni") String dni,
+            @RequestParam("password") String password) {
         try {
             Optional<Consumer> existingConsumerOptional = consumerRepository.findById(id);
 
@@ -66,8 +78,13 @@ public class ConsumerController {
                 existingConsumer.setName(name);
                 existingConsumer.setLastName(lastName);
                 existingConsumer.setEmail(email);
+
+                // Convierte la cadena de fecha en un LocalDate
+                LocalDate birthDate = LocalDate.parse(birthDateStr);
                 existingConsumer.setBirthDate(birthDate);
+
                 existingConsumer.setDni(dni);
+                existingConsumer.setPassword(password); // Corregido el nombre del campo
 
                 Consumer updatedConsumer = consumerRepository.save(existingConsumer);
                 return new ResponseEntity<>(updatedConsumer, HttpStatus.OK);
@@ -80,6 +97,7 @@ public class ConsumerController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
 
     @DeleteMapping("/{id}")

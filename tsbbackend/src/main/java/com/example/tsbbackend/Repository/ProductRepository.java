@@ -26,6 +26,7 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
             )
             FROM Product p
             INNER JOIN p.typeProduct tp
+            ORDER BY p.id DESC
             """
     )
     public List<ProductDto> findProduct();
@@ -45,6 +46,7 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
             FROM Product p
             INNER JOIN p.typeProduct tp
             WHERE p.onSale = true
+            ORDER BY p.id DESC
             """
     )
     public List<ProductDto>productOnSale();
@@ -62,6 +64,7 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
     FROM Product p
     INNER JOIN p.typeProduct tp
     WHERE tp.id = :typeProductId
+    ORDER BY p.id DESC
     """
     )
     public List<ProductDto> findProductsByTypeProductId(@Param("typeProductId") Integer typeProductId);
@@ -82,6 +85,7 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
         FROM Product p
         INNER JOIN p.typeProduct tp
         WHERE p.id = :productId
+        ORDER BY p.id DESC
         """
     )
     public List<ProductDto> findProductById(@Param("productId") Integer productId);
