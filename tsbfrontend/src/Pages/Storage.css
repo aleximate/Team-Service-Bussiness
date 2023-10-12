@@ -46,3 +46,24 @@
     color: red;
     font-weight: bold;
 }
+
+@media (max-width: 1200px) {
+    .storage-container-1 {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+        gap: 20px; /* Reducir el espacio entre las secciones */
+    }
+}
+
+@media (max-width: 800px) {
+    .storage-container-1 {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
+    }
+
+}
+
+@media (max-width: 480px) {
+    .storage-container-1 {
+        grid-template-columns: repeat(1, 1fr); /* 2 columnas en pantallas pequeñas */
+    }
+
+}

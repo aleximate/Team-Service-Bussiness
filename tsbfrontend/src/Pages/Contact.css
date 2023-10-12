@@ -1,11 +1,44 @@
+
 .contact-contact {
-    background-color: red;
     display: flex;
     justify-content: center;
-}
-
-.contact-contact-1 {
+    padding: 20px; /* Añade espacio alrededor del contenido */
+  }
+  
+  .contact-contact-1 {
     width: 90%;
+    height: 25vw;
     max-width: 1200px;
-    background-color: blue;
-}
+    display: flex;
+    justify-content: space-between;
+    padding: 20px; 
+    border: 2px solid black;
+  }
+  
+  .left-section {
+    width: 60%; /* Ajusta el ancho a tu preferencia */
+    color: black; /* Cambia el color de texto */
+    margin: 2vw;
+  }
+  
+  .right-section {
+    width: 55%; /* Ajusta el ancho a tu preferencia */
+    background-color: #d5d5d5; /* Color de fondo para la sección derecha */
+    /* Puedes agregar contenido aquí o estilos adicionales según tus necesidades */
+  }
+  
+  /* Estilos para los encabezados y párrafos */
+  .left-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .left-section h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .left-section p {
+    font-size: 16px;
+  }
+  

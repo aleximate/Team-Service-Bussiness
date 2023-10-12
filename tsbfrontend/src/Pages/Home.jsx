@@ -55,7 +55,7 @@ export const Home = () => {
           </p>
           <div className="home-container-onSale">
             {products.map((product, index) => (
-              <Link to={`/Producto-Detallado/${product.id}`} key={index}>
+              <Link to={`/Producto-Detallado/${product.id}`} key={index} >
                 <section className="home-section" key={index}>
                   <img
                     src={`data:image/jpeg;base64,${product.image}`}

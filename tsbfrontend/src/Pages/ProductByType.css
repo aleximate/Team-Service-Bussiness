@@ -4,11 +4,12 @@
     justify-content: center;
 }
 
-.productByType-container-2 {
+.productByType-container-1 {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 90%;
     max-width: 1200px;
+    
 
 }
 
@@ -30,4 +31,33 @@
     height: 270px;
     padding: 10px;
     cursor: pointer;
+}
+.no-products-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh; /* Esto hace que ocupe el 100% del alto de la ventana */
+}
+
+@media (max-width: 1200px) {
+    .productByType-container-2 {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+        gap: 20px; /* Reducir el espacio entre las secciones */
+    }
+}
+
+@media (max-width: 800px) {
+    .productByType-container-2 {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
+    }
+
+}
+
+@media (max-width: 480px) {
+    .productByType-container-2 {
+        grid-template-columns: repeat(1, 1fr); /* 2 columnas en pantallas pequeñas */
+    }
+
 }

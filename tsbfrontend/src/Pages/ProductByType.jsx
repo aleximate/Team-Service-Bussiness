@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getProductByType } from "../Api/Products";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 import "./ProductByType.css";
 export const ProductByType = () => {
     const { id } = useParams();
@@ -42,10 +43,18 @@ export const ProductByType = () => {
                                     <p>${product.price}</p>
                                     <p>{product.typeName}</p>
                                 </section>
-                            </Link>
+                            </Link>   
                         ))
+                        
                     ) : (
+                    <div className="no-products-container">
+                        <img
+                            src={logo}
+                            alt="No existen productos"
+                            className="no-products-image"
+                        />
                         <p>No existen productos</p>
+                    </div>
                     )}
                 </div>
             </div>

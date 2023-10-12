@@ -38,7 +38,7 @@ export const Storage = () => {
                 src={`data:image/jpeg;base64,${product.image}`}
                 className="storage-img"
                 alt="Producto"
-              />
+              /> 
               {product.onSale ? <p className="on-sale">EN OFERTA</p> : null}
               <p>{product.name}</p>
               <p>${product.price}</p>
