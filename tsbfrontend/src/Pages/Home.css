@@ -17,6 +17,7 @@
     justify-content: space-evenly;
 }
 
+
 .home-container-1 {
     width: 90%;
     max-width: 1200px;
@@ -41,7 +42,11 @@
     height: 270px;
     padding: 10px;
     cursor: pointer;
+    
 }
+
+
+
 
 .home-img {
     width: 200px;
@@ -49,3 +54,30 @@
     display: block;
     margin: 10px auto;
 }
+
+/* Media Query para pantallas medianas y pequeñas */
+@media (max-width: 1200px) {
+    .home-container-onSale {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+        gap: 20px; /* Reducir el espacio entre las secciones */
+    }
+}
+ 
+@media (max-width: 800px) {
+    .home-container-onSale {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
+    }
+
+}
+
+@media (max-width: 480px) {
+    .home-container-onSale {
+        grid-template-columns: repeat(1, 1fr); /* 2 columnas en pantallas pequeñas */
+    }
+
+}
+
+
+
+
+

@@ -47,9 +47,9 @@ export const Detail = () => {
               src={`data:image/jpeg;base64,${product.image}`}
             />
             <div className="details-section-1">
-              <p>Nombre: {product.name}</p>
-              <p>Precio: ${product.price}</p>
-              <p>Tipo de Producto: {product.typeProduct.name}</p>
+              <p className="name-pro">Nombre: {product.name}</p>
+              <p className="precio-pro">Precio: ${product.price}</p>
+              <p className="tipo-pro">Tipo de Producto: {product.typeProduct.name}</p>
               <button onClick={handleClick}>COMPRAR</button>
             </div>
           </section>

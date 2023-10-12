@@ -1,4 +1,6 @@
 import logo from "../assets/logo.png";
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+
 export const Footer = () => {
   return (
     <footer className="footer-footer">
