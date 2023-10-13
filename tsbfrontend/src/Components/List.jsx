@@ -47,7 +47,11 @@ export const List = () => {
   };
   const handleEdit = (itemId) => {
     setSelectedItemId(itemId);
-    history(`/actualizar/${tipo}/${itemId}`);
+    if (tipo === "producto") {
+      history(`/actualizar/${itemId}`);
+    } else {
+      history(`/actualizar/${tipo}/${itemId}`);
+    }
   };
 
   const customFields = {
@@ -60,45 +64,57 @@ export const List = () => {
       "image",
       "actions",
     ],
-    trabajador: ["id", "name", "lastName", "email", "birthDate", "dni", "actions"],
+    trabajador: [
+      "id",
+      "name",
+      "lastName",
+      "email",
+      "birthDate",
+      "dni",
+      "actions",
+    ],
     tipos: ["id", "name", "actions"],
   };
 
   const isImageColumnVisible = tipo === "producto";
 
-const handleDelete = async (itemId) => {
-  try {
-    const deleteFunction = fetchDeleteByType[tipo];
-    if (deleteFunction) {
-      const result = await Swal.fire({
-        title: "¿Estas seguro de eliminar?",
-        text: "No podras recuperar los datos",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Si, eliminar",
-      });
+  const handleDelete = async (itemId) => {
+    try {
+      const deleteFunction = fetchDeleteByType[tipo];
+      if (deleteFunction) {
+        const result = await Swal.fire({
+          title: "¿Estas seguro de eliminar?",
+          text: "No podras recuperar los datos",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Si, eliminar",
+        });
 
-      if (result.isConfirmed) {
-        // Ejecuta la función de eliminación si el usuario confirma
-        await deleteFunction(itemId);
-        // Actualiza la lista después de eliminar el elemento
-        setData((prevData) => prevData.filter((item) => item.id !== itemId));
+        if (result.isConfirmed) {
+          // Ejecuta la función de eliminación si el usuario confirma
+          await deleteFunction(itemId);
+          // Actualiza la lista después de eliminar el elemento
+          setData((prevData) => prevData.filter((item) => item.id !== itemId));
 
-        // Muestra un mensaje de éxito
-        Swal.fire("Eliminado", "Tu item ha sido eliminado", "Satisfactoriamente");
+          // Muestra un mensaje de éxito
+          Swal.fire(
+            "Eliminado",
+            "Tu item ha sido eliminado",
+            "Satisfactoriamente"
+          );
+        }
+      } else {
+        console.error(
+          "No se encontró una función de eliminación para el tipo:",
+          tipo
+        );
       }
-    } else {
-      console.error(
-        "No se encontró una función de eliminación para el tipo:",
-        tipo
-      );
+    } catch (error) {
+      console.error("Error al eliminar el elemento:", error);
     }
-  } catch (error) {
-    console.error("Error al eliminar el elemento:", error);
-  }
-};
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -132,7 +148,10 @@ const handleDelete = async (itemId) => {
         <Link to={`/menu`} className="boton-personalizado enlace-atras">
           REGRESAR
         </Link>
-        <Link to={`/create/${tipo}`} className="boton-personalizado enlace-crear">
+        <Link
+          to={`/create/${tipo}`}
+          className="boton-personalizado enlace-crear"
+        >
           Crear Nuevo
         </Link>
       </div>
@@ -146,11 +165,18 @@ const handleDelete = async (itemId) => {
         </thead>
         <tbody>
           {data.map((item) => (
-            <tr key={item.id} className={selectedItemId === item.id ? 'fila-seleccionada' : ''}>
+            <tr
+              key={item.id}
+              className={selectedItemId === item.id ? "fila-seleccionada" : ""}
+            >
               {customFields[tipo].map((field) => (
                 <td key={field}>
                   {field === "image" && isImageColumnVisible ? (
-                  <img className="list-img"src={`data:image/jpeg;base64,${item.image}`} alt="Imagen del producto" />
+                    <img
+                      className="list-img"
+                      src={`data:image/jpeg;base64,${item.image}`}
+                      alt="Imagen del producto"
+                    />
                   ) : field === "onSale" ? (
                     item[field] ? (
                       "En oferta"

@@ -12,8 +12,8 @@ export const createTypes=(type)=>{
     return axios.post('http://localhost:8080/type',type)
 }
 
-export const updateType=(id)=>{
-    return axios.put('http://localhost:8080/type/'+id)
+export const updateType=(itemId,data)=>{
+    return axios.put('http://localhost:8080/type/'+itemId,data)
 }
 export const deleteType=(id)=>{
     return axios.delete('http://localhost:8080/type/'+id)

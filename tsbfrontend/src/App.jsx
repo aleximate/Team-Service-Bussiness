@@ -13,6 +13,8 @@ import { Storage } from "./Pages/Storage";
 import { Detail } from "./Shared/Detail";
 import { ProductByType } from "./Pages/ProductByType";
 import { Login } from "./Components/Login";
+import { Update2 } from "./Components/Update2";
+
 
 function Pages() {
   return (
@@ -43,6 +45,7 @@ function App() {
         <Route path="/create/:tipo" element={<Create />} />
         <Route path="/lista/:tipo" element={<List />} />
         <Route path="/actualizar/:tipo/:itemId" element={<Update />} />
+        <Route path="/actualizar/:itemId" element={<Update2/> } />
       </Routes>
     </BrowserRouter>
   );
