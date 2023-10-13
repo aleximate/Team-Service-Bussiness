@@ -60,9 +60,10 @@ public class ProductService {
     }
 
 
-    public Product updateProduct(Integer productId, SaveProductDto productDto, MultipartFile image) throws IOException {
+    public Product updateProduct(Integer productId,
+                                 SaveProductDto productDto,
+                                 MultipartFile image) throws IOException {
         try {
-            // Verificar si el producto existe
             Optional<Product> existingProductOptional = productRepository.findById(productId);
 
             if (existingProductOptional.isPresent()) {

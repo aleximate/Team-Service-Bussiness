@@ -39,13 +39,15 @@ public class TypeProductController {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<TypeProduct> update(@PathVariable Integer id, @RequestParam("name") String name) {
+    public ResponseEntity<TypeProduct> update(@PathVariable Integer id, @RequestBody TypeProduct updatedTypeProductData) {
         try {
             Optional<TypeProduct> existingTypeProductOptional = typeProductRepository.findById(id);
 
             if (existingTypeProductOptional.isPresent()) {
                 TypeProduct existingTypeProduct = existingTypeProductOptional.get();
-                existingTypeProduct.setName(name);
+
+                // Actualiza los campos del objeto existente con los datos enviados en updatedTypeProductData
+                existingTypeProduct.setName(updatedTypeProductData.getName());
 
                 TypeProduct updatedTypeProduct = typeProductRepository.save(existingTypeProduct);
 

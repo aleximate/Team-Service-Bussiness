@@ -61,15 +61,15 @@ public class ConsumerController {
         }
     }
 
-    @PutMapping("/{id}")
+    /*@PutMapping("/{id}")
     public ResponseEntity<Consumer> updateConsumer(
             @PathVariable Integer id,
-            @RequestParam("name") String name,
-            @RequestParam("lastName") String lastName,
-            @RequestParam("email") String email,
-            @RequestParam("birthDate") String birthDateStr,
-            @RequestParam("dni") String dni,
-            @RequestParam("password") String password) {
+            @RequestParam(value = "name",required = false) String name,
+            @RequestParam(value = "lastName",required = false) String lastName,
+            @RequestParam(value = "email",required = false) String email,
+            @RequestParam(value = "birthDate",required = false) String birthDateStr,
+            @RequestParam(value = "dni",required = false) String dni,
+            @RequestParam(value = "password",required = false) String password) {
         try {
             Optional<Consumer> existingConsumerOptional = consumerRepository.findById(id);
 
@@ -80,6 +80,7 @@ public class ConsumerController {
                 existingConsumer.setEmail(email);
 
                 // Convierte la cadena de fecha en un LocalDate
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 LocalDate birthDate = LocalDate.parse(birthDateStr);
                 existingConsumer.setBirthDate(birthDate);
 
@@ -96,7 +97,38 @@ public class ConsumerController {
             // Si ocurre un error durante la actualización, puedes devolver un ResponseEntity con el código 500 (Internal Server Error).
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }*/
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Consumer> updateConsumer(@PathVariable Integer id,
+                                                   @RequestBody Consumer updatedConsumerData) {
+        try {
+            Optional<Consumer> existingConsumerOptional = consumerRepository.findById(id);
+
+            if (existingConsumerOptional.isPresent()) {
+                Consumer existingConsumer = existingConsumerOptional.get();
+
+                // Actualiza los campos con los datos proporcionados en updatedConsumerData
+                existingConsumer.setName(updatedConsumerData.getName());
+                existingConsumer.setLastName(updatedConsumerData.getLastName());
+                existingConsumer.setEmail(updatedConsumerData.getEmail());
+                existingConsumer.setBirthDate(updatedConsumerData.getBirthDate());
+                existingConsumer.setDni(updatedConsumerData.getDni());
+                existingConsumer.setPassword(updatedConsumerData.getPassword());
+
+                Consumer updatedConsumer = consumerRepository.save(existingConsumer);
+                return new ResponseEntity<>(updatedConsumer, HttpStatus.OK);
+            } else {
+                // Si no se encuentra el consumidor con el ID proporcionado, puedes devolver un ResponseEntity con el código 404 (Not Found).
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            // Si ocurre un error durante la actualización, puedes devolver un ResponseEntity con el código 500 (Internal Server Error).
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
+
 
 
 
