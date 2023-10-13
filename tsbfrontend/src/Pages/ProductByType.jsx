@@ -23,7 +23,7 @@ export const ProductByType = () => {
                 console.error("Error al obtener productos:", error);
             });
     }, [id]);
-
+ 
     return (
         <div className="productByType-container">
             <div className="productByType-container-1">
@@ -31,7 +31,7 @@ export const ProductByType = () => {
                 <div className="productByType-container-2">
                     {products.length > 0 ? (
                         products.map((product, index) => (
-                            <Link to={`/Producto-Detallado/${product.id}`} key={index}>
+                            <Link className="link-sin-decoracion" to={`/Producto-Detallado/${product.id}`} key={index}>
                                 <section className="productByType-section">
                                     <img
                                         src={`data:image/jpeg;base64,${product.image}`}
@@ -60,4 +60,4 @@ export const ProductByType = () => {
             </div>
         </div>
     );
-}
+} 

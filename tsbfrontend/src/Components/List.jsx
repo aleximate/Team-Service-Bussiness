@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteType, getAllTypes } from "../Api/TypeProducts";
 import Swal from "sweetalert2";
 import "./List.css";
-
+ 
 export const List = () => {
   const { tipo } = useParams();
   const [data, setData] = useState([]);

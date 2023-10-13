@@ -1,44 +1,102 @@
-
+/* Estilos generales para la sección */
 .contact-contact {
-    display: flex;
-    justify-content: center;
-    padding: 20px; /* Añade espacio alrededor del contenido */
-  }
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-contact-1 {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 20px;
+  border: 2px solid black;
+  align-items: flex-start;
+}
+
+.left-section {
+  width: 45%; /* Ocupa todo el ancho en pantallas más pequeñas */
+  color: black;
+  margin: 20px;
+}
+
+.right-section {
+  display: flex;
+  width: 45%; 
+  align-items: center;
+  height: 350px;
+  margin: 2.1vw;
+}
+
+.right-section img {
+  width: 100%; 
+  background-color: #d5d5d5;
+  height: 350px;
+}
+
+/* Estilos para los encabezados y párrafos */
+.left-section h1 {
+  font-size: 18px;
+  margin-bottom: 18px;
+  color: #acacac;
+}
+
+.left-section h2 {
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.left-section h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #919191;
+}
+
+.left-section p {
+  font-size: 30px;
+  margin-bottom: 18px;
+  font-weight: bold;
+}
+
+@media (max-width: 950px) {
+  .contact-contact {
+    flex-wrap: wrap;
   
+  }
   .contact-contact-1 {
-    width: 90%;
-    height: 25vw;
-    max-width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px; 
-    border: 2px solid black;
+    flex-direction: column;
+    align-items: center;
   }
-  
   .left-section {
-    width: 60%; /* Ajusta el ancho a tu preferencia */
-    color: black; /* Cambia el color de texto */
-    margin: 2vw;
+    width: 90%; /* Ocupa todo el ancho en pantallas más pequeñas */
   }
   
   .right-section {
-    width: 55%; /* Ajusta el ancho a tu preferencia */
-    background-color: #d5d5d5; /* Color de fondo para la sección derecha */
-    /* Puedes agregar contenido aquí o estilos adicionales según tus necesidades */
+    width: 67vw;
+    height: 40vw;
+    align-items: center; /* Ocupa todo el ancho en pantallas más pequeñas */
+  }
+  .right-section img {
+    width: 68vw;
+    height: 38vw;
   }
   
-  /* Estilos para los encabezados y párrafos */
+  .left-section h1 {
+    font-size: 2.5vw;
+  }
+  
   .left-section h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 2.5vw;
   }
   
   .left-section h3 {
-    font-size: 18px;
-    margin-bottom: 5px;
+    font-size: 2.7vw;
   }
   
   .left-section p {
-    font-size: 16px;
+    font-size: 4vw;
   }
-  
+}

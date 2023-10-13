@@ -55,7 +55,7 @@ export const Home = () => {
           </p>
           <div className="home-container-onSale">
             {products.map((product, index) => (
-              <Link to={`/Producto-Detallado/${product.id}`} key={index} >
+              <Link className="link-sin-decoracion" to={`/Producto-Detallado/${product.id}`} key={index} >
                 <section className="home-section" key={index}>
                   <img
                     src={`data:image/jpeg;base64,${product.image}`}
@@ -74,7 +74,7 @@ export const Home = () => {
           <p className="home-second-text">Descubre lo nuevo de LaptopExpress</p>
           <div className="home-container-onSale">
             {news.map((product, index) => (
-              <Link to={`/Producto-Detallado/${product.id}`} key={index}>
+              <Link className="link-sin-decoracion" to={`/Producto-Detallado/${product.id}`} key={index}>
                 <section className="home-section" key={index}>
                   <img
                     src={`data:image/jpeg;base64,${product.image}`}

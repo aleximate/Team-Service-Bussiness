@@ -1,0 +1,167 @@
+/* Estilos generales */
+
+.section-p1 {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    margin: 35px 0;
+  }
+  
+  .section-m1 {
+    display: flex;
+    width: 100%;
+    background-color: #88d3ff;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .container-about-register {
+    margin: 14px 28px;
+    width: 1200px;
+    display: flex;
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center; /* Centra verticalmente */
+  }
+  
+  .container-about-register h4 {
+    font-size: 20px;
+    color: white;
+  }
+  
+  .container-about-register p {
+    font-size: 12px;
+    margin: 10px 0;
+    width: 50%; /* Ajusta el ancho del texto */
+  }
+  
+  .contenedor-about {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contenedor-imagen-about img {
+    width: 500px;
+    height: 330px;
+    margin: 20px 35px;
+  }
+
+  .container-info-about {
+    margin: 1.5vw;
+  }
+
+  .container-info-about h2 {
+    font-size: 40px;
+    margin-bottom: 14px;
+  }
+  
+  .container-info-about p,
+  .container-info-about abbr {
+    font-size: 13px;
+    color: #a3a3a3;
+  }
+  
+  .newstext {
+    width: 50%;
+  }
+  
+  .form {
+    text-align: end;
+    width: 100%;
+  }
+  
+  .form input[type="text"] {
+    padding: 10px;
+    width: 65%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .form button.normal {
+    padding: 10px 20px;
+    background-color: #002fff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .form button.normal:hover {
+    background-color: #0056b3;
+  }
+  @media (max-width: 900px) {
+    .section-p1 {
+        flex-direction: column;
+      }
+    .container-about-register {
+      flex-direction: column; /* Cambia a orientación vertical */
+      align-items: center;
+      margin: 10px; /* Agrega margen en la parte inferior para separar los elementos */
+    }
+  
+    .container-about-register p {
+       font-size: 1.8vw;
+    }
+
+    .container-about-register h4 {
+        font-size: 3vw;
+     }
+  
+    .contenedor-imagen-about img {
+      width: 50vw;
+      height: 40vw; 
+      margin: 5vw 0vw 0vw 0vw;
+    }
+    .form input[type="text"] {
+        font-size: 2.2vw;
+      }
+      
+      .form button.normal {
+        font-size: 2.5vw;
+        width: 30vw;
+      }
+
+      .form{
+        justify-content: center;
+        display: flex;
+        width: 90vw;
+        margin-bottom: 2vw;
+      }
+      .container-info-about h2 {
+        font-size: 5vw;
+        margin: 2vw 0;
+
+      }
+      
+      .container-info-about p{
+        font-size: 2vw;
+        margin: 1vw 0vw;
+      }
+      .container-info-about abbr{
+        font-size: 2vw;
+        
+      }
+      marquee{
+        font-size: 3vw;
+        margin: 2vw 0;
+      }
+      .container-info-about{
+        margin: 4vw;
+      }
+      .newstext {
+        display: flex;
+        width: 90vw;
+        margin-bottom: 3vw;
+      }
+      .form input[type="text"] {
+        width: 60vw;
+        font-size: 2.5vw;
+      }
+      
+  }

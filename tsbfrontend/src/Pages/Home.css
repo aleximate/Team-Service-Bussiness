@@ -11,13 +11,16 @@
     margin-bottom: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* Cuatro columnas de igual ancho */
     gap: 30px;
-    /* Espacio entre las secciones */
     justify-content: space-evenly;
+    
 }
 
-
+.link-sin-decoracion{
+    text-decoration: none;
+    color: black;
+    
+}
 .home-container-1 {
     width: 90%;
     max-width: 1200px;
@@ -31,6 +34,7 @@
 
 .home-second-text {
     text-align: center;
+
 }
 
 .home-section {
@@ -41,8 +45,7 @@
     border-radius: 20px;
     height: 270px;
     padding: 10px;
-    cursor: pointer;
-    
+    cursor: pointer;  
 }
 
 
@@ -55,24 +58,29 @@
     margin: 10px auto;
 }
 
-/* Media Query para pantallas medianas y pequeñas */
+.home-section p {
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+}
+  
+
 @media (max-width: 1200px) {
     .home-container-onSale {
-        grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
-        gap: 20px; /* Reducir el espacio entre las secciones */
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 20px; 
     }
 }
  
 @media (max-width: 800px) {
     .home-container-onSale {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
+        grid-template-columns: repeat(2, 1fr);
     }
 
 }
 
 @media (max-width: 480px) {
     .home-container-onSale {
-        grid-template-columns: repeat(1, 1fr); /* 2 columnas en pantallas pequeñas */
+        grid-template-columns: repeat(1, 1fr); 
     }
 
 }

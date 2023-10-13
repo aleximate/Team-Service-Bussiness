@@ -32,7 +32,7 @@ export const Storage = () => {
     <div className="storage-container">
       <div className="storage-container-1">
         {products.map((product, index) => (
-          <Link to={`/Producto-Detallado/${product.id}`} key={index}>
+          <Link className="link-sin-decoracion" to={`/Producto-Detallado/${product.id}`} key={index}>
             <section className="storage-section">
               <img
                 src={`data:image/jpeg;base64,${product.image}`}

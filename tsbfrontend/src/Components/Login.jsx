@@ -5,7 +5,7 @@ import "./Login.css";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+ 
   const handleClick = async () => {
     try {
       const response = await getAllConsumers();
@@ -33,6 +33,7 @@ export const Login = () => {
           <label>Email</label>
           <input
             type="text"
+            placeholder="Ingrese su Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -40,9 +41,12 @@ export const Login = () => {
           <input
             type="password"
             value={password}
+            placeholder="Ingrese su contraseña"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleClick}>INGRESAR</button>
+          <div className="container-button-login">
+            <button onClick={handleClick}>INGRESAR</button>
+          </div>
         </form>
       </div>
     </div>

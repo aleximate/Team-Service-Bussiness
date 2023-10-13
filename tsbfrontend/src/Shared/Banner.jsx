@@ -11,7 +11,7 @@ import "swiper/css/scrollbar";
 
 export const Banner = () => {
   return (
-    <Swiper
+    <Swiper 
       // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={50}

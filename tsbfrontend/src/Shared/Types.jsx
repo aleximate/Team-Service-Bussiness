@@ -40,7 +40,7 @@ export const Types = () => {
     >
       {types.map((type, index) => (
         <SwiperSlide key={index} className="swiper-container">
-          <Link to={`/Producto-Tipo/${type.id}`} key={index}>
+          <Link className="link-sin-decoracion" to={`/Producto-Tipo/${type.id}`} key={index}>
             <section className="type-section">
               <p className="type-p">{type.name}</p>
             </section>

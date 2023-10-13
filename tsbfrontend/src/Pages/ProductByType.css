@@ -12,6 +12,12 @@
     
 
 }
+.productByType-container-1 h2 {
+    margin: 30px 0;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
 
 .productByType-container-2 {
     display: grid;
